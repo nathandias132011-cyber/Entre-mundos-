@@ -1,0 +1,594 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#101322">
+<title>Entre Mundos — RPG de Vida Real</title>
+<style>
+:root{--bg:#0d1020;--panel:#171c31;--panel2:#1d2440;--line:#303957;--text:#f4f6ff;--muted:#a6aec8;--accent:#8b7cff;--accent2:#4fd1c5;--gold:#f3c969;--danger:#f28b9a;--good:#83d6a2;--shadow:0 18px 55px #05071388}*{box-sizing:border-box}body{margin:0;background:radial-gradient(1000px 600px at 10% -10%,#33305d 0%,transparent 60%),radial-gradient(700px 500px at 100% 20%,#183b50 0%,transparent 55%),var(--bg);color:var(--text);font:15px/1.5 system-ui,-apple-system,Segoe UI,Roboto,Arial,sans-serif;min-height:100vh}button,input,textarea,select{font:inherit}button{cursor:pointer;color:inherit;border:1px solid var(--line);background:#222945;border-radius:13px;padding:12px 15px;transition:.18s}button:hover{border-color:#8b7cff;transform:translateY(-1px)}button:active{transform:scale(.985)}button:disabled{opacity:.45;cursor:not-allowed;transform:none}.primary{background:linear-gradient(135deg,#8475ff,#5d67d8);border-color:transparent;font-weight:750}.secondary{background:#252d4b}.ghost{background:transparent}.danger{border-color:#75424e;background:#38232f}.small{padding:8px 11px;font-size:13px}.app{max-width:1100px;margin:auto;padding:20px 16px 42px}.topbar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:18px}.brand{display:flex;align-items:center;gap:10px;font-weight:800;letter-spacing:.3px}.logo{width:40px;height:40px;border-radius:14px;background:linear-gradient(145deg,#8e7dff,#42cfc1);display:grid;place-items:center;color:#101322;font-size:20px;box-shadow:0 8px 28px #7a70ff44}.muted{color:var(--muted)}.eyebrow{text-transform:uppercase;letter-spacing:1.8px;color:var(--accent2);font-size:11px;font-weight:800}.hero,.panel{background:linear-gradient(155deg,#1b2139ee,#13182bee);border:1px solid var(--line);border-radius:24px;box-shadow:var(--shadow)}.hero{padding:clamp(24px,6vw,58px);position:relative;overflow:hidden}.hero:after{content:"✦";position:absolute;right:8%;top:12%;font-size:clamp(100px,22vw,230px);color:#8b7cff12;pointer-events:none}.hero h1{font-size:clamp(34px,7vw,64px);line-height:1.03;margin:10px 0 15px;max-width:700px}.hero p{max-width:620px;color:var(--muted);font-size:17px}.actions{display:flex;flex-wrap:wrap;gap:10px;margin-top:26px}.feature-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-top:16px}.feature{padding:17px;border:1px solid var(--line);background:#171d32c9;border-radius:18px}.feature b{display:block;margin:5px 0}.feature span{color:var(--muted);font-size:13px}.icon{font-size:21px}.hidden{display:none!important}.panel{padding:clamp(17px,3vw,28px)}.panel h2{margin:5px 0 8px;font-size:clamp(22px,4vw,32px)}.progress-wrap{height:7px;background:#303853;border-radius:9px;overflow:hidden;margin:15px 0 7px}.progress{height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));width:0%;transition:width .3s}.step-meta{display:flex;justify-content:space-between;color:var(--muted);font-size:12px}.question{font-size:clamp(20px,4vw,27px);font-weight:750;line-height:1.25;margin:22px 0 8px}.hint{color:var(--muted);margin:0 0 18px}.option-list{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.option{min-height:54px;text-align:left;background:#202844}.option.selected{border-color:var(--accent2);background:#23404c;box-shadow:inset 0 0 0 1px var(--accent2)}.field{width:100%;border:1px solid var(--line);background:#0f1427;color:var(--text);padding:14px 15px;border-radius:13px;outline:none}.field:focus{border-color:var(--accent)}textarea.field{min-height:110px;resize:vertical}.form-actions{display:flex;gap:10px;flex-wrap:wrap;margin-top:20px}.note{font-size:12px;color:var(--muted);margin-top:12px}.power-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:12px;margin-top:18px}.power-card{border:1px solid var(--line);background:#1b223b;border-radius:17px;padding:15px;text-align:left;display:flex;flex-direction:column;gap:8px}.power-card.selected{border-color:var(--accent2);background:#203b44}.power-card h3{margin:0;font-size:17px}.power-card p{margin:0;color:var(--muted);font-size:13px}.tag{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:20px;background:#30375b;color:#c9c4ff;font-size:11px;font-weight:700;align-self:flex-start}.game-layout{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(260px,.85fr);gap:15px}.scene-head{display:flex;justify-content:space-between;gap:10px;align-items:center;color:var(--muted);font-size:13px}.scene-title{font-size:24px;margin:14px 0 6px}.dialogue{background:#10162a;border:1px solid #303957;border-radius:18px;padding:18px;margin:16px 0}.speaker{font-size:12px;color:var(--accent2);font-weight:850;letter-spacing:1px;text-transform:uppercase}.dialogue p{margin:6px 0 0;font-size:16px;line-height:1.72;white-space:pre-wrap;overflow-wrap:anywhere}.choices{display:grid;gap:9px}.choice{text-align:left;display:flex;gap:10px;align-items:flex-start;background:#202844}.choice .num{display:grid;place-items:center;flex:0 0 25px;height:25px;border-radius:8px;background:#343d64;color:#d9d5ff;font-weight:800;font-size:12px}.free-action{margin-top:16px;border-top:1px solid var(--line);padding-top:15px}.free-row{display:flex;gap:8px;margin-top:8px}.free-row .field{min-width:0}.side-panel{display:grid;gap:12px;align-content:start}.stat-card{padding:16px;border:1px solid var(--line);background:#171d32;border-radius:18px}.stat-card h3{font-size:13px;margin:0 0 10px;color:#c4cbe3}.statline{display:flex;justify-content:space-between;gap:10px;font-size:13px;margin:7px 0}.meter{height:6px;background:#333b57;border-radius:10px;overflow:hidden;margin-top:5px}.meter i{display:block;height:100%;background:linear-gradient(90deg,var(--accent),var(--accent2));border-radius:10px}.nav{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}.nav button{font-size:12px;padding:10px 5px}.modal-back{position:fixed;inset:0;background:#050713cc;backdrop-filter:blur(7px);display:grid;place-items:center;padding:16px;z-index:20}.modal{max-width:650px;width:100%;max-height:86vh;overflow:auto;background:#171d32;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:var(--shadow)}.modal-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.modal h2{margin:0}.modal-body{margin-top:18px}.item-row,.person-row{padding:12px 0;border-bottom:1px solid #303957}.item-row:last-child,.person-row:last-child{border:0}.pill{padding:4px 8px;border-radius:20px;background:#293252;color:#bfc7e8;font-size:11px}.toast{position:fixed;bottom:20px;left:50%;transform:translateX(-50%);background:#e7eaff;color:#14182b;padding:11px 17px;border-radius:30px;font-weight:700;z-index:40;box-shadow:var(--shadow);max-width:90%;text-align:center}.tiny{font-size:12px;color:var(--muted)}.two-col{display:grid;grid-template-columns:1fr 1fr;gap:10px}.timeline{border-left:2px solid #505b85;padding-left:15px;margin:12px 0}.timeline div{margin:10px 0}.empty{text-align:center;color:var(--muted);padding:22px}.power-activity{margin:14px 0 16px;padding:15px;border:1px solid #695fc4;border-radius:17px;background:linear-gradient(145deg,#211f43,#172238);box-shadow:0 10px 30px #080b1c66}.power-activity-head{display:flex;flex-direction:column;gap:3px;margin-bottom:10px;color:#bcb5ff;font-size:11px;letter-spacing:1px}.power-activity-head b{font-size:13px;color:#f1efff}.power-use{padding:10px 0;border-top:1px solid #ffffff18}.power-use:first-child{border-top:0}.power-use strong{display:block;color:#e4e0ff;font-size:14px}.power-use p{margin:4px 0 0;color:#c3c8e0;font-size:13px;line-height:1.55}.power-use .use-kind{display:inline-block;margin-left:6px;padding:2px 6px;border-radius:20px;background:#34305f;color:#c9c3ff;font-size:10px;font-weight:750}.power-card .ability-list{margin:3px 0 0;padding-left:18px;color:#c8cde1;font-size:12px}.power-card .ability-list li{margin:3px 0}.power-status{color:#98e6d8;font-weight:800;font-size:11px}.power-card{cursor:default}.dialogue p{font-size:16px;line-height:1.82}.power-activity{border-color:#8275e8}.power-use p{font-size:13.5px;line-height:1.7}.footer{text-align:center;color:#7d86a7;font-size:11px;margin-top:22px}
+@media(max-width:760px){.app{padding:13px 12px 30px}.feature-grid{grid-template-columns:1fr}.game-layout{grid-template-columns:1fr}.side-panel{grid-template-columns:1fr 1fr}.side-panel .nav{grid-column:1/-1}.power-grid{grid-template-columns:1fr}.option-list{grid-template-columns:1fr}.scene-title{font-size:21px}.free-row{flex-direction:column}.topbar .tiny{display:none}}
+</style></head>
+<body><div class="app">
+<header class="topbar"><div class="brand"><div class="logo">✧</div><div>ENTRE MUNDOS<div class="tiny">RPG DE VIDA REAL</div></div></div><div id="topInfo" class="tiny">Uma vida, infinitas possibilidades.</div></header>
+<main id="appMain">
+<section id="home" class="hero"><div class="eyebrow">Uma experiência narrativa</div><h1>Sua vida.<br><span style="color:#9c91ff">Suas escolhas.</span></h1><p>Construa a história do protagonista antes da aventura. Conheça sua família, sua escola e seu círculo social. Quando o inesperado acontecer, decida o que fazer com os poderes que receber.</p><div class="actions"><button class="primary" id="newGame">＋ NOVO JOGO</button><button class="secondary" id="continueGame">▶ CONTINUAR</button><button class="ghost" id="settingsBtn">⚙ Configurações</button></div><div class="feature-grid"><div class="feature"><div class="icon">◈</div><b>Uma vida construída por você</b><span>Entrevista de criação, rotina, família e relações.</span></div><div class="feature"><div class="icon">✦</div><b>Cinco poderes absolutos</b><span>Atuação passiva, ativa, sinergia total e evolução contínua.</span></div><div class="feature"><div class="icon">⌁</div><b>Um mundo em movimento</b><span>Horários, memórias, consequências e personagens com objetivos.</span></div></div><div class="note">Este RPG é fictício. Você pode inventar qualquer resposta ou pular perguntas.</div></section>
+<section id="interview" class="panel hidden"><div class="eyebrow" id="stageLabel">CRIAÇÃO DO PROTAGONISTA</div><div class="step-meta"><span id="stepName">Sobre o protagonista</span><span id="stepCount">1 de 1</span></div><div class="progress-wrap"><div class="progress" id="setupProgress"></div></div><div id="questionArea"></div><div class="form-actions"><button class="primary" id="answerNext">Continuar →</button><button class="ghost" id="skipQuestion">Pular pergunta</button></div><div class="note">Responda como quiser. Não use dados pessoais reais; invente detalhes ou deixe em branco.</div></section>
+<section id="powerSelect" class="panel hidden"><div class="eyebrow">O EVENTO INESPERADO</div><h2>Algo mudou naquela noite.</h2><p class="muted">Uma presença desconhecida desperta cinco sistemas sobrenaturais no protagonista. Os cinco são concedidos automaticamente, em seu auge absoluto inicial, com funcionamento passivo e ativo, sem custos artificiais ou limites fixos. A evolução continua mesmo depois desse auge.</p><div id="powerGrid" class="power-grid"></div><div class="form-actions"><button class="primary" id="beginAdventure">Iniciar minha aventura →</button><span class="tiny" id="powerCount">5 poderes despertados</span></div></section>
+<section id="game" class="hidden"><div class="game-layout"><div class="panel"><div class="scene-head"><span id="dateTime">Segunda-feira · 06:30</span><span class="pill" id="locationPill">Casa</span></div><h2 class="scene-title" id="sceneTitle">Um novo dia</h2><div class="dialogue"><div class="speaker" id="speaker">Narrador</div><p id="dialogueText"></p></div><section id="powerActivity" class="power-activity hidden" aria-live="polite"><div class="power-activity-head"><span>✦ SISTEMA SUPREMO</span><b>REGISTRO DE PODERES ACIONADOS</b></div><div id="powerActivityList"></div></section><div class="choices" id="choices"></div><div class="free-action"><b>✎ Sua liberdade de escolha</b><div class="tiny">Escreva qualquer ação, pergunta ou fala. A cena mostrará a reação dos personagens e o que cada poder fez naquele instante.</div><div class="free-row"><input id="freeInput" class="field" placeholder="O que você faz?" maxlength="280"><button id="sendFree" class="primary">Enviar</button></div></div></div><aside class="side-panel"><div class="stat-card"><h3>PROTAGONISTA</h3><div class="statline"><span id="heroName">—</span><b id="heroAge">—</b></div><div class="statline"><span>Dinheiro</span><b id="heroMoney">R$ 0</b></div><div class="statline"><span>Humor</span><b id="heroMood">Neutro</b></div><div class="statline"><span>Energia</span><b id="heroEnergy">80%</b></div><div class="meter"><i id="energyBar" style="width:80%"></i></div></div><div class="stat-card"><h3>RESUMO DO DIA</h3><div class="statline"><span>Escola</span><b id="schoolStatus">Pendente</b></div><div class="statline"><span>Reputação</span><b id="reputation">0</b></div><div class="statline"><span>XP</span><b id="xpValue">0</b></div><div class="statline"><span>Nível</span><b id="levelValue">1</b></div></div><div class="nav"><button data-modal="profile">◎ Perfil</button><button data-modal="relations">♡ Relações</button><button data-modal="powers">✦ Poderes</button><button data-modal="inventory">▣ Inventário</button><button data-modal="map">⌖ Mapa</button><button data-modal="calendar">▦ Calendário</button><button data-modal="phone">▤ Celular</button><button data-modal="journal">☷ Diário</button><button data-modal="settings">⚙ Opções</button></div></aside></div></section>
+</main><div class="footer">ENTRE MUNDOS · RPG com narração por IA opcional · Progresso salvo neste aparelho</div></div>
+<div id="modalRoot" class="hidden"></div><div id="toast" class="toast hidden"></div>
+<script>
+(()=>{
+'use strict';
+const $=id=>document.getElementById(id);const sections=['home','interview','powerSelect','game'];let game=null,selectedAnswer=null,questionIndex=0,selectedPowers=new Set(),toastTimer=null;
+const AI_ENDPOINT_KEY='entreMundosAiEndpoint';let aiBusy=false,aiNoticeShown=false;
+const questions=[
+{stage:'Sobre você',key:'identity',items:[
+['Qual é o nome do protagonista?','Pode usar um nome inventado.',['Nathan','Lucas','Gabriel','Outro nome']],
+['Qual é a idade do protagonista?','Escolha uma idade para a história.',['13 anos','14 anos','15 anos','16 anos','17 anos','18 anos ou mais']],
+['Como você descreveria a personalidade dele?','Pense em como costuma agir no dia a dia.',['Tímido e observador','Extrovertido e comunicativo','Reservado e independente','Calmo e paciente','Impulsivo e espontâneo','Uma mistura de características']],
+['Como ele costuma se sentir em relação à própria aparência?','É apenas uma característica narrativa; não existe resposta certa.',['Confiante','Às vezes inseguro','Não costuma pensar nisso','Prefere não definir']],
+['Quais são os principais interesses dele?','Você pode escolher um ou escrever vários.',['Esportes','Tecnologia e jogos','Música e arte','Leitura e estudos','Natureza e animais','Vários interesses']],
+['Qual é o maior sonho dele?','O que gostaria de conquistar no futuro?',['Ter uma carreira de que goste','Ajudar a família','Conhecer o mundo','Ser reconhecido por algo','Ter uma vida tranquila','Ainda não sabe']],
+['Qual é um medo ou preocupação importante?','Pode ser algo cotidiano ou totalmente inventado.',['De decepcionar pessoas importantes','De ficar sozinho','De não alcançar seus objetivos','De mudanças inesperadas','Prefere não definir']],
+['Como reage quando algo dá errado?','Escolha a reação mais próxima.',['Tenta resolver imediatamente','Pensa bastante antes de agir','Procura ajuda','Fica frustrado e precisa de tempo','Finge que está tudo bem']],
+]},
+{stage:'Família',key:'family',items:[
+['Com quem o protagonista mora?','A composição da casa influencia a rotina.',['Mãe e pai','Apenas com a mãe','Apenas com o pai','Com avós ou parentes','Com responsáveis','Outra configuração']],
+['Como é a relação com a mãe ou figura materna?','Descreva o vínculo entre eles.',['Muito próxima','Boa, mas com discussões','Distante','Complicada','Não se aplica']],
+['Como é a relação com o pai ou figura paterna?','Descreva o vínculo entre eles.',['Muito próxima','Boa, mas com discussões','Distante','Complicada','Não se aplica']],
+['Ele tem irmãos?','Irmãos podem aparecer na história.',['É filho único','Um irmão','Uma irmã','Mais de um irmão','Irmãos por parte de pai ou mãe']],
+['Como é o ambiente em casa?','Pense na convivência cotidiana.',['Unido e acolhedor','Tranquilo, cada um na sua','Movimentado e barulhento','Com conflitos frequentes','Muda conforme o dia']],
+['Como os responsáveis costumam agir?','Isso pode influenciar regras e horários.',['Rígidos','Tranquilos','Compreensivos','Protetores','Uma mistura']],
+['Existe alguma tradição familiar importante?','Pode ser um costume de fim de semana, refeição ou reunião.',['Almoçar juntos','Visitar parentes','Assistir algo juntos','Conversar no fim do dia','Não há uma tradição definida']],
+]},
+{stage:'Condição financeira',key:'finance',items:[
+['Como é a condição financeira da família?','Isso ajuda a definir o padrão de vida fictício.',['Apertada','Modesta','Estável','Confortável','Muito confortável']],
+['Onde a família mora?','A casa será usada em cenas e no mapa.',['Casa própria','Casa alugada','Apartamento próprio','Apartamento alugado','Mora com familiares']],
+['Como são as despesas da casa?','As finanças não precisam ser detalhadas.',['Há dificuldades para pagar algumas contas','É preciso planejar tudo','As contas são pagas sem grandes problemas','Há bastante folga no orçamento']],
+['O protagonista recebe mesada ou dinheiro?','O dinheiro inicial será ajustado conforme a resposta.',['Não recebe','Recebe ocasionalmente','Recebe uma pequena mesada','Recebe uma mesada fixa']],
+['Como a família lida com compras?','Isso influencia escolhas e oportunidades.',['Compra apenas o necessário','Pesquisa preços e planeja','Consegue comprar alguns extras','Tem bastante liberdade para comprar']],
+]},
+{stage:'Escola',key:'school',items:[
+['Em qual série ou etapa ele estuda?','A história adapta a rotina escolar à idade escolhida.',['Ensino fundamental','Ensino médio','Faculdade ou curso','Não está estudando no momento']],
+['Como é a escola?','Descreva o ambiente.',['Pequena e acolhedora','Grande e movimentada','Exigente e competitiva','Simples e tranquila','Uma escola fictícia diferente']],
+['Qual matéria ele mais gosta?','Pode influenciar atividades e desempenho.',['Matemática','Português','Ciências','História','Educação Física','Artes ou outra']],
+['Qual matéria é mais difícil?','Dificuldades podem melhorar com estudo.',['Matemática','Português','Ciências','História','Inglês','Nenhuma em especial']],
+['Como costumam ser as notas?','As notas não definem o valor do personagem.',['Altas','Boas e regulares','Variam bastante','Abaixo do que gostaria','Prefere não definir']],
+['Como ele se sente na escola?','Pense no ambiente e na rotina.',['Gosta de estar lá','Vai principalmente para estudar','Às vezes se sente deslocado','Tem dias bons e ruins','Não gosta muito']],
+['Ele tem amigos na escola?','Essas pessoas podem virar personagens recorrentes.',['Um melhor amigo','Um pequeno grupo','Conhece muita gente','Tem poucos contatos','Ainda está tentando se enturmar']],
+['Como os professores o enxergam?','A percepção varia de professor para professor.',['Participativo','Quieto e observador','Criativo','Distraído às vezes','Responsável']],
+['Como costuma se comportar nas aulas?','Isso pode afetar acontecimentos escolares.',['Presta atenção','Conversa com colegas','Participa bastante','Fica mais na dele','Depende da matéria']],
+['Participa de atividades fora da sala?','Atividades podem abrir novas oportunidades.',['Esportes','Clube ou projetos','Música ou arte','Ajuda em atividades','Não participa atualmente']],
+]},
+{stage:'Vida social',key:'social',items:[
+['Como é o círculo de amizades dele?','As relações vão crescer a partir das interações.',['Poucos amigos próximos','Grupo grande de amigos','Muitos conhecidos, poucos próximos','Prefere ficar sozinho','Está conhecendo pessoas']],
+['Como é a facilidade para conversar?','Pense em conversas com desconhecidos.',['Muito fácil','Fácil quando há assunto','Demora para se soltar','É mais reservado','Varia conforme a pessoa']],
+['Como ele costuma ser visto pelas pessoas?','A reputação é construída ao longo do jogo.',['Gentil e prestativo','Engraçado e espontâneo','Quieto e misterioso','Estudioso e responsável','Difícil de conhecer']],
+['Existe alguém de quem ele não gosta ou com quem tem conflito?','Você pode criar alguém ou deixar isso surgir durante a história.',['Não há ninguém específico','Um colega competitivo','Alguém que o trata mal','Uma antiga amizade complicada','Prefere deixar em aberto']],
+['Há algum interesse afetivo na história?','Pode pular; relações serão tratadas com respeito e sem pressa.',['Não por enquanto','Talvez alguém da escola','Alguém de outro círculo','Prefere deixar em aberto']],
+['O que ele mais valoriza em uma amizade?','Isso orienta afinidades e decisões futuras.',['Confiança','Humor e diversão','Lealdade','Apoio nos momentos difíceis','Liberdade e sinceridade']],
+]}
+];
+const powers=[
+{name:'Compreensão Absoluta',category:'Compreensão, conhecimento, interpretação, aprendizagem e execução',description:'Compreende instantaneamente aquilo que observa, escuta, lê, estuda, experimenta ou encontra. Sua compreensão alcança mecanismos, sistemas, conceitos, leis, técnicas, fenômenos físicos e sobrenaturais, relações ocultas e princípios abstratos. Quando compreende completamente uma técnica ou procedimento, pode executá-lo imediatamente com domínio, reproduzi-lo com precisão, corrigir imperfeições durante a execução e combinar conhecimentos para criar soluções inéditas.',passive:'Interpreta continuamente o contexto, as informações, as conversas e os acontecimentos ao redor, sem tomar decisões no lugar do protagonista.',abilities:['Compreensão total, instantânea, profunda e multidimensional','Compreensão sobrenatural e conceitual','Interpretação de expressões, gestos, padrões e nuances de comunicação','Antecipação de consequências a partir das informações compreendidas','Execução e domínio imediatos daquilo que foi completamente compreendido','Reprodução perfeita, assimilação técnica e correção automática','Aplicação criativa e aperfeiçoamento indefinido do conhecimento']},
+{name:'Otimização Absoluta',category:'Aperfeiçoamento, eficiência, desempenho e evolução',description:'Identifica, cria e implementa continuamente versões superiores de processos, capacidades e métodos. Não se limita a corrigir erros: encontra soluções novas, combina possibilidades e aperfeiçoa inclusive a própria maneira de otimizar. Pode atuar simultaneamente sobre movimentos, raciocínio, técnicas, estratégias, habilidades, poderes, energia, comunicação e execução de tarefas, sem substituir a vontade ou as escolhas do protagonista.',passive:'Refina a execução das ações escolhidas pelo protagonista e encontra melhorias sem decidir por ele o que deve querer ou fazer.',abilities:['Otimização física, mental, técnica e estratégica','Otimização de habilidades, poderes, energia e adaptações','Autocorreção e aperfeiçoamento simultâneo de múltiplos processos','Otimização recursiva: melhora também o próprio processo de otimização','Criação de soluções inéditas e combinações de conhecimentos','Aprimoramento contínuo sem teto predeterminado']},
+{name:'Memória Absoluta',category:'Armazenamento, lembranças, informações, experiências e recuperação',description:'Possui armazenamento ilimitado, registro preciso e organização automática. Preserva informações, imagens, sons, conversas, experiências sensoriais, acontecimentos, raciocínios, conhecimentos, técnicas e procedimentos. Recupera qualquer registro instantaneamente, conecta lembranças de assuntos diferentes e seleciona o que deseja trazer à consciência, sem confusão ou perda de informações devidamente registradas.',passive:'Registra continuamente experiências, detalhes, conversas, mudanças, tentativas e consequências como referências permanentes para os demais poderes.',abilities:['Armazenamento ilimitado e registro perfeito','Memória visual, auditiva, sensorial, episódica, intelectual e procedural','Recuperação instantânea e reprodução mental detalhada','Organização automática e memória associativa','Comparação de experiências e recuperação paralela','Controle voluntário de acesso às lembranças','Aprimoramento contínuo dos próprios métodos de memória']},
+{name:'Autorregulação Absoluta',category:'Organismo, funcionamento interno e equilíbrio fisiológico',description:'Exerce domínio supremo sobre o próprio organismo e seus processos internos. Monitora, regula, reorganiza e aperfeiçoa continuamente a homeostase, metabolismo, temperatura, sistemas hormonais, neurológicos, musculares, cardiovasculares, respiratórios e sensoriais. Mantém a capacidade de sentir emoções, mas permite regular as próprias respostas emocionais. O corpo acompanha automaticamente as novas capacidades e transformações do protagonista.',passive:'Mantém o funcionamento corporal equilibrado e ajusta continuamente o organismo às atividades, emoções, concentração e mudanças produzidas pelos outros poderes.',abilities:['Homeostase e controle fisiológico absolutos','Regulação energética, metabólica, térmica e hormonal','Regulação neurológica, muscular, cardiovascular e respiratória','Ajuste sensorial, concentração e respostas emocionais','Monitoramento da integridade e recuperação fisiológica','Reorganização e aperfeiçoamento progressivo do próprio organismo','Integração automática com novas capacidades e adaptações']},
+{name:'Adaptação Absoluta',category:'Adaptação, evolução, transformação e desenvolvimento de respostas',description:'Inspirada no mecanismo adaptativo de Mahoraga, mas expandida para fenômenos físicos, fisiológicos, mentais, sensoriais, ambientais, energéticos, sobrenaturais, técnicos, espaciais, temporais e conceituais. Reconhece padrões, inicia uma resposta desde o primeiro contato relevante, desenvolve adaptações específicas e continua aperfeiçoando-as depois de consolidadas. Pode adaptar simultaneamente a vários fenômenos, preservar todas as respostas e adaptar o próprio processo adaptativo.',passive:'Monitora continuamente novidades e alterações no ambiente e no próprio protagonista. Quando identifica um fenômeno relevante, inicia a resposta adaptativa sem exigir comando consciente.',abilities:['Reconhecimento absoluto e análise adaptativa','Início imediato do processo e desenvolvimento evolutivo','Adaptação física, fisiológica, mental, intelectual e sensorial','Adaptação ambiental, energética, sobrenatural e técnica','Adaptação espacial, temporal e conceitual','Adaptação múltipla, preventiva, permanente, cumulativa e integrada','Criação de respostas inéditas e adaptação recursiva da própria adaptação','Evolução contínua sem quantidade máxima de rotações ou estágio final obrigatório'],wheel:'A Roda da Evolução pode se manifestar acima ou atrás da cabeça, ou funcionar internamente. As rotações representam reconhecimento, análise, desenvolvimento, consolidação e novas evoluções. Não existe quantidade máxima de rotações; diferentes fenômenos podem avançar em estágios próprios. A ausência da roda visível nunca interrompe o poder.'}
+];
+function createSupremePowerStates(){return powers.map(p=>({...p,level:'Auge absoluto',uses:0,evolutionCount:0,lastUsed:null,history:[],adaptiveRotations:0}));}
+function ensureSupremePowers(){if(!game)return;const old=new Map((game.powers||[]).map(p=>[p.name,p]));game.powers=powers.map(def=>{const previous=old.get(def.name)||{};return {...def,level:'Auge absoluto',uses:previous.uses||0,evolutionCount:previous.evolutionCount||0,lastUsed:previous.lastUsed||null,history:Array.isArray(previous.history)?previous.history:[],adaptiveRotations:previous.adaptiveRotations||0}});game.powerEvents=Array.isArray(game.powerEvents)?game.powerEvents:[];const validNames=new Set(powers.map(p=>p.name));if(game.powerEvents.some(e=>!validNames.has(e.name)))game.powerEvents=[];game.powerHistory=Array.isArray(game.powerHistory)?game.powerHistory.filter(e=>validNames.has(e.name)):[];game.powerNarrative=typeof game.powerNarrative==='string'?game.powerNarrative:'';}
+
+const npcSeed=[{name:'Marina',role:'Mãe',affinity:72,trust:70,mood:'Atarefada',goal:'Organizar a manhã e manter a casa em ordem',routine:'Começa o dia preparando as coisas da casa',memory:[]},{name:'Rafael',role:'Pai',affinity:66,trust:68,mood:'Tranquilo',goal:'Resolver compromissos do trabalho',routine:'Confere as mensagens e organiza o dia',memory:[]},{name:'Caio',role:'Colega',affinity:50,trust:50,mood:'Animado',goal:'Conversar com os amigos no intervalo',routine:'Chega cedo e costuma ficar perto do pátio',memory:[]},{name:'Lívia',role:'Colega',affinity:50,trust:50,mood:'Pensativa',goal:'Entregar um trabalho e melhorar as notas',routine:'Revê as anotações antes das aulas',memory:[]}];
+const days=['Domingo','Segunda-feira','Terça-feira','Quarta-feira','Quinta-feira','Sexta-feira','Sábado'];
+function show(id){sections.forEach(x=>$(x).classList.toggle('hidden',x!==id));$('topInfo').textContent=id==='game'?'Campanha em andamento':'Uma vida, infinitas possibilidades.';window.scrollTo({top:0,behavior:'smooth'});}
+function toast(msg){$('toast').textContent=msg;$('toast').classList.remove('hidden');clearTimeout(toastTimer);toastTimer=setTimeout(()=>$('toast').classList.add('hidden'),2300)}
+function save(){if(game){localStorage.setItem('entreMundosSave',JSON.stringify(game));localStorage.setItem('entreMundosPhase','game')}else if(questionIndex>=0){localStorage.setItem('entreMundosSetup',JSON.stringify({answers:answers,questionIndex}));}}
+let answers={};let flatQuestions=[];
+function flatten(){flatQuestions=[];questions.forEach(group=>group.items.forEach(item=>flatQuestions.push({stage:group.stage,key:group.key,q:item[0],hint:item[1],options:item[2]})));}
+function startNew(){if(!confirm('Começar uma nova campanha? O progresso salvo anteriormente será substituído.'))return;game=null;answers={};questionIndex=0;selectedAnswer=null;selectedPowers.clear();localStorage.removeItem('entreMundosSave');localStorage.removeItem('entreMundosSetup');localStorage.removeItem('entreMundosPhase');localStorage.removeItem('entreMundosPending');localStorage.removeItem('entreMundosPowerSelection');flatten();renderQuestion();show('interview');localStorage.setItem('entreMundosSetup',JSON.stringify({answers,questionIndex:0}));refreshContinue()}
+function renderQuestion(){const q=flatQuestions[questionIndex];if(!q)return;selectedAnswer=answers[questionIndex]||null;$('stageLabel').textContent=q.stage.toUpperCase();$('stepName').textContent=q.stage;$('stepCount').textContent=(questionIndex+1)+' de '+flatQuestions.length;$('setupProgress').style.width=((questionIndex/flatQuestions.length)*100)+'%';let html=`<div class="question">${q.q}</div><p class="hint">${q.hint}</p><div class="option-list">`;q.options.forEach(opt=>{html+=`<button class="option ${selectedAnswer===opt?'selected':''}" data-opt="${esc(opt)}">${esc(opt)}</button>`});html+=`</div><div style="margin-top:16px"><label class="tiny" for="customAnswer">Ou escreva uma resposta própria</label><input id="customAnswer" class="field" placeholder="Sua resposta..." value="${isCustom(selectedAnswer,q.options)?esc(selectedAnswer):''}"></div>`;$('questionArea').innerHTML=html;$('questionArea').querySelectorAll('[data-opt]').forEach(btn=>btn.addEventListener('click',()=>{selectedAnswer=btn.dataset.opt;$('questionArea').querySelectorAll('[data-opt]').forEach(b=>b.classList.toggle('selected',b===btn));$('customAnswer').value=''}));$('customAnswer').addEventListener('input',e=>{selectedAnswer=e.target.value.trim()||null;$('questionArea').querySelectorAll('[data-opt]').forEach(b=>b.classList.remove('selected'))});$('answerNext').textContent=questionIndex===flatQuestions.length-1?'Concluir criação →':'Continuar →';$('skipQuestion').textContent='Pular pergunta';}
+function isCustom(value,opts){return !!value&&!opts.includes(value)}
+function nextQuestion(skip=false){const custom=$('customAnswer')?.value.trim();if(custom)selectedAnswer=custom;if(selectedAnswer&&!skip)answers[questionIndex]=selectedAnswer;else if(skip)delete answers[questionIndex];if(questionIndex<flatQuestions.length-1){questionIndex++;renderQuestion();save()}else{finishInterview()}}
+function finishInterview(){const chosen=answers[1]||'15 anos';const ageNum=parseInt(chosen.match(/\d+/)?.[0]||'15',10);const moneyChoice=answers[15]||'Modesta';const financeLevel=moneyChoice.toLowerCase();let money=financeLevel.includes('apertada')?15:financeLevel.includes('modesta')?25:financeLevel.includes('estável')?45:financeLevel.includes('confortável')?80:120;let allowance=answers[18]||'';money+=allowance.includes('mesada fixa')?35:allowance.includes('pequena mesada')?15:allowance.includes('ocasionalmente')?5:0;game={profile:{name:answers[0]||'Alex',age:ageNum,answers:{...answers}},money,energy:85,mood:'Neutro',xp:0,level:1,reputation:0,school:'Pendente',location:'Casa',day:1,minute:390,scene:'morning',inventory:['Celular','Mochila','Caderno','Garrafa de água'],powers:createSupremePowerStates(),powerEvents:[],powerHistory:[],powerNarrative:'',relationships:npcSeed.map(x=>({...x,memory:[]})),journal:[],messages:[{from:'Marina',text:'Bom dia! Não esqueça de se preparar para sair.'}],flags:{hadBreakfast:false,schoolVisited:false,homework:false,late:false},settings:{textSize:'normal'},eventCount:0};let motherAnswer=answers[9]||'',fatherAnswer=answers[10]||'';game.relationships[0].affinity=motherAnswer.includes('Muito próxima')?82:motherAnswer.includes('Distante')?38:motherAnswer.includes('Complicada')?28:64;game.relationships[0].trust=game.relationships[0].affinity;game.relationships[1].affinity=fatherAnswer.includes('Muito próxima')?82:fatherAnswer.includes('Distante')?38:fatherAnswer.includes('Complicada')?28:62;game.relationships[1].trust=game.relationships[1].affinity;let friendsAnswer=(answers[30]||'').toLowerCase();game.relationships[2].affinity=friendsAnswer.includes('poucos')?62:friendsAnswer.includes('grande')?72:50;let gradeAnswer=(answers[24]||'').toLowerCase();game.school=gradeAnswer.includes('altas')?'Bom desempenho':gradeAnswer.includes('abaixo')?'Precisa de atenção':'Pendente';show('powerSelect');renderPowers();}
+function renderPowers(){
+  $('powerGrid').innerHTML=powers.map((p,i)=>`<div class="power-card"><span class="tag">✦ SISTEMA ${i+1} · ATIVO DESDE O DESPERTAR</span><h3>${p.name}</h3><p>${p.description}</p><p><b>Funcionamento passivo:</b> ${p.passive}</p><p class="power-status">AUGE ABSOLUTO · EVOLUÇÃO CONTÍNUA · SEM CUSTO OU RECARGA</p><ul class="ability-list">${p.abilities.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${p.wheel?`<p><b>Roda da Evolução:</b> ${p.wheel}</p>`:''}</div>`).join('');
+  $('powerCount').textContent='5 de 5 poderes despertados automaticamente';
+}
+function begin(){
+  if(!game){toast('Crie o protagonista primeiro.');return}
+  ensureSupremePowers();game.day=1;game.minute=390;game.scene='morning';game.nextPowerIndex=0;
+  game.journal.push('A criação terminou. Os cinco sistemas absolutos despertaram simultaneamente: Compreensão Absoluta, Otimização Absoluta, Memória Absoluta, Autorregulação Absoluta e Adaptação Absoluta. Todos começaram no auge absoluto e permanecem em evolução contínua.');
+  game.powerEvents=[];
+  const awakening='Os cinco sistemas se manifestam ao mesmo tempo. A Compreensão Absoluta assimila a natureza de cada poder; a Memória Absoluta registra a experiência inaugural; a Otimização Absoluta integra o funcionamento conjunto; a Autorregulação Absoluta ajusta o organismo à nova condição; e a Adaptação Absoluta reconhece a transformação e inicia sua integração. Nenhuma dessas manifestações toma suas decisões por você.';
+  game.lastMessage='Naquela noite, a presença desaparece, mas as cinco capacidades permanecem. Você percebe que não recebeu cinco habilidades comuns: recebeu cinco sistemas absolutos, independentes e perfeitamente integrados. Todos já se encontram em seu auge inicial, podem atuar passivamente ou por vontade própria e continuam evoluindo sem um teto predeterminado.\n\n'+awakening;
+  applySupremeSynergy('O despertar simultâneo dos cinco poderes absolutos.', '', true);
+  localStorage.removeItem('entreMundosPending');localStorage.removeItem('entreMundosPowerSelection');show('game');renderScene();save();
+}
+
+function timeLabel(){let h=Math.floor(game.minute/60)%24,m=game.minute%60;return `${String(h).padStart(2,'0')}:${String(m).padStart(2,'0')}`}
+function renderScene(){if(!game)return;$('dateTime').textContent=`${days[(game.day-1)%7]} · ${timeLabel()} · Dia ${game.day}`;$('locationPill').textContent=game.location;$('heroName').textContent=game.profile.name;$('heroAge').textContent=game.profile.age+' anos';$('heroMoney').textContent=moneyFmt(game.money);$('heroMood').textContent=game.mood;$('heroEnergy').textContent=game.energy+'%';$('energyBar').style.width=game.energy+'%';$('schoolStatus').textContent=game.school;$('reputation').textContent=game.reputation;$('xpValue').textContent=game.xp;$('levelValue').textContent=game.level;
+let s=sceneContent();$('sceneTitle').textContent=s.title;$('speaker').textContent=s.speaker;const narrativeParts=[s.text,game.lastMessage,game.powerNarrative].filter(Boolean);$('dialogueText').textContent=narrativeParts.join('\n\n');renderPowerActivity();$('choices').innerHTML=s.choices.map((c,i)=>`<button class="choice" data-choice="${i}"><span class="num">${i+1}</span><span>${esc(c.label)}</span></button>`).join('');$('choices').querySelectorAll('[data-choice]').forEach(b=>b.addEventListener('click',()=>takeChoice(Number(b.dataset.choice))));}
+// A apresentação da resposta generativa é aplicada sobre a estrutura local da cena.
+const renderSceneLocal=renderScene;
+renderScene=function(){
+  renderSceneLocal();
+  if(!game)return;
+  const ai=game.aiTurn;
+  if(ai){
+    if(ai.title)$('sceneTitle').textContent=ai.title;
+    if(ai.speaker)$('speaker').textContent=ai.speaker;
+    if(ai.narrative)$('dialogueText').textContent=ai.narrative;
+    if(Array.isArray(ai.choices)&&ai.choices.length===4){
+      $('choices').innerHTML=ai.choices.map((choice,i)=>`<button class="choice" data-ai-choice="${i}"><span class="num">${i+1}</span><span>${esc(choice)}</span></button>`).join('');
+      $('choices').querySelectorAll('[data-ai-choice]').forEach(b=>b.addEventListener('click',()=>{
+        const choice=ai.choices[Number(b.dataset.aiChoice)];
+        game.aiTurn=null;
+        performFree(choice);
+      }));
+    }
+  }
+  if(aiBusy)$('topInfo').textContent='✦ IA generativa está narrando…';
+  else $('topInfo').textContent=localStorage.getItem(AI_ENDPOINT_KEY)?'✦ IA generativa configurada':'Narrativa local · IA não configurada';
+  $('choices').querySelectorAll('button').forEach(b=>b.disabled=aiBusy);
+  $('sendFree').disabled=aiBusy;$('freeInput').disabled=aiBusy;
+};
+
+function sceneContent(){
+  const t=timeLabel(),name=game.profile.name,day=days[(game.day-1)%7],a=game.profile.answers||{};
+  const personality=a[2]||'um jeito próprio',interests=a[4]||'interesses variados',dream=a[5]||'um futuro ainda em aberto',fear=a[6]||'uma preocupação que prefere guardar',reaction=a[7]||'observa antes de agir';
+  const homeStyle=a[12]||'um ambiente familiar singular',schoolType=a[21]||'uma escola de rotina própria',favorite=a[22]||'uma matéria de que gosta',hardest=a[23]||'um conteúdo que exige mais atenção';
+  const mom=game.relationships.find(n=>n.role==='Mãe')||game.relationships[0],dad=game.relationships.find(n=>n.role==='Pai')||game.relationships[1],caio=relationship('Caio'),livia=relationship('Lívia');
+  const mood=n=>n?.mood||'ocupado',relationLine=n=>n?`${n.name} parece ${mood(n).toLowerCase()}`:'alguém da família';
+  const memoryLine=n=>n?.memory?.length?` Você se lembra de uma conversa anterior com ${n.name}: ${n.memory[n.memory.length-1].text}`:'';
+  if(game.scene==='morning')return{title:'O começo de um dia comum',speaker:'Narrador',text:`${day}, ${t}. A luz da manhã atravessa a janela e desenha uma faixa clara na parede. Por alguns segundos, o quarto permanece quieto: há o som distante de veículos na rua, um ruído vindo da cozinha e a vibração curta do celular sobre algum móvel. Um novo dia começou, mas sua mente ainda está despertando.
+
+Do outro lado da porta, ${mom?.name||'alguém da família'} chama seu nome. A casa tem o ritmo que você já conhece — ${homeStyle.toLowerCase()} — e isso influencia até a maneira como você reage quando precisa levantar com pressa. Você costuma ser ${personality.toLowerCase()}; talvez se levante logo, talvez precise de alguns minutos para organizar os pensamentos.
+
+Há coisas esperando por você: compromissos, conversas que ainda não aconteceram e objetivos que combinam com seus interesses em ${interests.toLowerCase()}. Seu sonho de ${dream.toLowerCase()} parece distante em uma manhã comum como esta. Ainda assim, é por meio de pequenas decisões que o dia começa a tomar forma. ${relationLine(mom)} hoje. O que você faz primeiro?${memoryLine(mom)}`,choices:[{label:'Levantar, arrumar a cama e me preparar',act:'ready'},{label:'Ficar mais alguns minutos na cama',act:'sleep'},{label:'Pegar o celular e conferir as mensagens',act:'phone'},{label:'Responder e conversar com alguém da família',act:'family'}]};
+  if(game.scene==='breakfast')return{title:'A rotina da manhã',speaker:mom?.name||'Narrador',text:`A cozinha está mais iluminada agora. O cheiro do café da manhã se mistura ao barulho de pratos, passos e pequenas conversas. ${mom?.name||'Uma pessoa da família'} está ocupada com a própria rotina, mas percebe quando você aparece.
+
+— Bom dia. Conseguiu descansar? — pergunta Marina, colocando uma xícara sobre a mesa. Ela olha para você por um instante e acrescenta: — Hoje parece que vai ser corrido. Você já separou suas coisas?
+
+Rafael aparece logo depois, conferindo o celular. — Bom dia. A escola começa no mesmo horário de sempre, então tenta não deixar tudo para a última hora — comenta. Marina responde com um sorriso discreto: — Deixa a pessoa tomar café primeiro. A conversa é simples, mas mostra o jeito como cada um participa da rotina da casa.
+
+Sua mochila ainda precisa ser conferida e o horário da escola se aproxima. Você se lembra de que costuma lidar com novidades da seguinte maneira: ${reaction.toLowerCase()}. Não existe obrigação de seguir uma ordem perfeita; sair cedo, comer com calma ou conversar por alguns minutos pode mudar o ritmo do restante do dia. ${dad?.name||'Outra pessoa da família'} também parece estar se preparando para seus compromissos.`,choices:[{label:'Tomar café com calma e conversar',act:'breakfast'},{label:'Conferir a mochila e os materiais',act:'bag'},{label:'Perguntar como será o dia da família',act:'family'},{label:'Sair agora para a escola',act:'school'}]};
+  if(game.scene==='school')return{title:'Chegada à escola',speaker:'Narrador',text:`O portão está aberto e o pátio já tem movimento. Alguns estudantes terminam de chegar, outros formam pequenos grupos perto dos bancos. O som de conversas se mistura ao arrastar de cadeiras vindo de uma sala e ao aviso distante de alguém da coordenação.
+
+A escola — ${schoolType.toLowerCase()} — tem lugares que você já reconhece e outros pelos quais quase nunca passa. Perto de um banco, ${caio?.name||'um colega'} conversa com outros alunos. Ele parece ${mood(caio).toLowerCase()} e, ao notar sua presença, comenta com alguém: — Acho que hoje a primeira aula vai ser puxada. Mais adiante, ${livia?.name||'outra colega'} confere as anotações. Ela passa o dedo por uma linha do caderno e murmura: — Preciso lembrar de perguntar sobre essa parte. Os dois estão ocupados, mas parecem disponíveis para conversar se você se aproximar.
+
+Você ainda tem alguns minutos antes do sinal. Pode se aproximar de alguém, organizar o material ou simplesmente observar como a manhã está se desenrolando. A forma como você costuma ser visto pelos colegas não determina o que precisa fazer hoje.`,choices:[{label:`Cumprimentar ${caio?.name||'Caio'} e puxar conversa`,act:'caio'},{label:`Perguntar a ${livia?.name||'Lívia'} sobre as anotações`,act:'livia'},{label:'Ir para a sala e organizar o material',act:'class'},{label:'Explorar o pátio e observar o movimento',act:'observe'}]};
+  if(game.scene==='class')return{title:'Uma aula pela manhã',speaker:'Professora Helena',text:`A sala vai ficando mais silenciosa à medida que os alunos se acomodam. Há cadernos sendo abertos, estojo caindo no chão e conversas que diminuem quando a professora Helena se aproxima do quadro. Ela escreve o tema da aula e organiza algumas folhas sobre a mesa.
+
+— Bom dia, pessoal. Hoje vamos revisar o conteúdo e depois fazer uma atividade. Quero que vocês tentem explicar o raciocínio, não apenas copiar a resposta — diz ela, apoiando o marcador na mesa.
+
+Um aluno no fundo pergunta se a atividade vale nota. Helena responde: — Ela faz parte da avaliação, mas também serve para descobrir o que ainda precisa ser revisto. Se uma etapa não ficar clara, perguntem. Prefiro uma dúvida bem colocada a uma resposta copiada sem entendimento.
+
+Você abre o caderno. A matéria preferida do protagonista é ${favorite.toLowerCase()}, enquanto ${hardest.toLowerCase()} costuma exigir um pouco mais de atenção. A atividade deverá ser entregue antes do fim do período. Você pode acompanhar a explicação, perguntar quando algo não fizer sentido ou dividir a atenção com o que acontece ao redor. Pequenas atitudes podem influenciar seu aprendizado e a impressão que a professora terá da sua participação.`,choices:[{label:'Prestar atenção e fazer anotações',act:'study'},{label:'Levantar a mão e fazer uma pergunta',act:'question'},{label:'Conversar discretamente com um colega',act:'talk'},{label:'Começar a atividade e organizar a entrega',act:'homework'}]};
+  if(game.scene==='interval')return{title:'O intervalo',speaker:'Narrador',text:`O sinal interrompe a aula e, em poucos instantes, o corredor se enche de passos e vozes. O pátio parece outro lugar: grupos se formam, alguém comenta uma avaliação, duas pessoas riem perto da escada e a fila da cantina começa a crescer.
+
+${caio?.name||'Caio'} está por perto e parece ${mood(caio).toLowerCase()}. Quando percebe você, ele comenta: — Finalmente o intervalo. A aula passou rápido hoje, não passou? ${livia?.name||'Lívia'} guarda o caderno e olha o celular. Em seguida, levanta os olhos: — Estou tentando terminar as anotações antes de esquecer o que a professora explicou. Você tem um intervalo limitado antes de voltar às atividades. Pode aproveitar para fortalecer uma amizade, comer alguma coisa, conversar com um professor ou ficar em um canto mais sossegado.
+
+Seu dinheiro atual é ${moneyFmt(game.money)}. Não é necessário gastar para aproveitar o intervalo; às vezes uma conversa curta ou alguns minutos de tranquilidade são suficientes para mudar o humor do restante do dia.`,choices:[{label:'Sentar com os colegas e conversar',act:'friends'},{label:'Ir à cantina comprar um lanche',act:'buy'},{label:'Ficar em um lugar tranquilo por alguns minutos',act:'quiet'},{label:'Procurar um professor para conversar',act:'teacher'}]};
+  if(game.scene==='afternoon')return{title:'O fim das aulas',speaker:'Narrador',text:`O movimento da escola começa a mudar. Cadernos são fechados, cadeiras voltam ao lugar e os alunos conversam sobre o que farão depois. Lá fora, a luz já não tem a mesma força do início da manhã. O período escolar terminou, mas o dia ainda está longe de acabar.
+
+Você pode voltar para casa, concluir uma tarefa que ficou pendente, passar algum tempo com os colegas ou conhecer melhor o bairro. O celular vibra com uma notificação; não parece urgente, mas lembra que há pessoas e conversas fora da sala de aula.
+
+O que escolher agora também depende de como está se sentindo. A energia está em ${game.energy}%, e o sonho de ${dream.toLowerCase()} pode começar com hábitos pequenos: responsabilidade, descanso, curiosidade e relações construídas sem pressa.`,choices:[{label:'Voltar para casa',act:'home'},{label:'Concluir a atividade escolar',act:'homework'},{label:'Passar um tempo com amigos',act:'friends'},{label:'Explorar a cidade ou o bairro',act:'town'}]};
+  if(game.scene==='home')return{title:'De volta a casa',speaker:'Narrador',text:`Ao entrar, você reconhece os sons familiares do ambiente. Uma porta se fecha em algum cômodo, há algum aparelho ligado ao fundo e alguém parece estar resolvendo uma tarefa. A casa segue seu próprio ritmo, mesmo quando você não está por perto.
+
+${relationLine(mom)}; ${relationLine(dad)}. Marina percebe sua chegada e pergunta: — Como foi o dia? Teve alguma coisa diferente na escola? Rafael, mesmo ocupado com o que fazia, acrescenta: — E conseguiu resolver aquela atividade? Eles não exigem uma resposta perfeita, mas demonstram curiosidade sobre o que aconteceu. O ambiente que você descreveu durante a criação — ${homeStyle.toLowerCase()} — ajuda a definir o tom dessa convivência, mas as relações também mudam conforme as conversas e atitudes do dia a dia.
+
+Sua mochila está por perto. Você pode descansar, estudar um pouco, conversar com a família ou conferir as mensagens. Não há uma única maneira correta de usar a tarde.`,choices:[{label:'Descansar e recuperar as energias',act:'rest'},{label:'Estudar ou revisar o conteúdo',act:'study'},{label:'Conversar com alguém da família',act:'family'},{label:'Ver mensagens e notificações',act:'phone'}]};
+  if(game.scene==='town')return{title:'Pelo bairro',speaker:'Narrador',text:`A rua tem movimento próprio. Uma loja mantém a porta aberta, alguém atravessa a calçada carregando sacolas e duas pessoas conversam perto de uma casa. O ar está diferente do ambiente fechado da escola; há mais espaço para caminhar e decidir o destino sem tanta pressa.
+
+Você conhece parte desse caminho, mas ainda existem lugares que não explorou. A praça costuma reunir moradores em horários diferentes. A papelaria tem materiais escolares e pequenos objetos à venda. Também é possível visitar alguém conhecido ou simplesmente caminhar um pouco antes de voltar.
+
+O dinheiro que você tem é ${moneyFmt(game.money)}. As escolhas no bairro podem envolver gastos, encontros ou apenas observação. Por enquanto, ninguém exige que você siga um roteiro: é possível escolher o próximo passo conforme a curiosidade do momento.`,choices:[{label:'Ir até a praça',act:'park'},{label:'Entrar na papelaria',act:'shop'},{label:'Visitar ou procurar um amigo',act:'friends'},{label:'Voltar para casa',act:'home'}]};
+  if(game.scene==='evening')return{title:'O fim do dia',speaker:'Narrador',text:`A luz do lado de fora diminui e a casa começa a entrar no ritmo da noite. As atividades mais urgentes foram concluídas ou ficaram para depois. O corpo pode pedir descanso, mas a cabeça ainda repassa conversas, tarefas e pequenas decisões que aconteceram desde cedo.
+
+Talvez alguma conversa tenha aproximado você de alguém; talvez uma resposta tenha sido mal compreendida. Essas coisas não desaparecem automaticamente quando o relógio avança. As pessoas guardam impressões, e você também pode pensar sobre o que gostaria de fazer diferente amanhã.
+
+Amanhã ainda não chegou. Por enquanto, você pode compartilhar a refeição com a família, deixar a mochila organizada, registrar o dia no diário ou dormir. O mundo continuará seguindo a rotina dos outros personagens e novas situações poderão surgir nos próximos dias.`,choices:[{label:'Jantar e conversar com a família',act:'family'},{label:'Organizar a mochila para amanhã',act:'bag'},{label:'Registrar os acontecimentos no diário',act:'journal'},{label:'Ir descansar e encerrar o dia',act:'sleep'}]};
+  const active=game.powers?.length||0;
+  return{title:'Um momento fora do comum',speaker:'Narrador',text:`Por um instante, algo parece destoar da rotina. O som distante da rua continua, pessoas seguem seus caminhos e o celular ainda pode receber notificações, mas você sente que está mais atento ao que acontece ao redor. Talvez seja apenas cansaço; talvez exista uma explicação que ainda não encontrou.
+
+Você se lembra do acontecimento inexplicável que mudou sua vida. Os cinco sistemas absolutos despertaram no auge: Compreensão Absoluta, Otimização Absoluta, Memória Absoluta, Autorregulação Absoluta e Adaptação Absoluta. Eles funcionam de maneira passiva e ativa, em sinergia permanente, e continuam evoluindo sem um limite predeterminado.
+
+O que você fará agora? Pode observar o ambiente, procurar alguém para conversar, voltar a um lugar conhecido ou dedicar alguns minutos a compreender uma habilidade.`,choices:[{label:'Observar cuidadosamente o ambiente',act:'observe'},{label:'Conversar com alguém',act:'friends'},{label:'Voltar para um lugar conhecido',act:'home'},{label:'Abrir o painel e ativar um dos cinco poderes',act:'power'}]};
+}
+function recordPowerUse(name,effect,kind='Sinergia passiva'){
+  if(!game)return;ensureSupremePowers();const p=game.powers.find(x=>x.name===name);if(!p)return;
+  const entry={name,effect,kind,day:game.day||1,time:timeLabel()};p.uses=(p.uses||0)+1;p.lastUsed={day:entry.day,time:entry.time,effect};p.history=p.history||[];p.history.unshift(entry);p.history=p.history.slice(0,30);
+  game.powerEvents=game.powerEvents||[];game.powerEvents.push(entry);game.powerHistory=game.powerHistory||[];game.powerHistory.unshift(entry);game.powerHistory=game.powerHistory.slice(0,100);
+}
+function classifyPowerMoment(context){
+  const c=String(context||'').toLowerCase();
+  if(/convers|fala|fam[ií]lia|m[aã]e|pai|colega|amig|mensag|rela[cç][aã]o|amizade|desculp|discut|cumpriment|pergunt|responde/.test(c))return 'social';
+  if(/estud|aula|ler|livro|aprender|pesquis|tarefa|caderno|atividade|professor|conte[uú]do/.test(c))return 'cognitive';
+  if(/correr|andar|caminh|trein|jogar|esport|moviment|subir|levantar|desloc|corrida/.test(c))return 'physical';
+  if(/dorm|descans|sono|relax|respir|repous/.test(c))return 'rest';
+  if(/observar|ambiente|bairro|pra[cç]a|rua|explor|local|sala|perceber/.test(c))return 'environment';
+  if(/comer|caf[eé]|refei[cç][aã]o|lanche|beber|comprar|loja|papelaria/.test(c))return 'daily';
+  return 'general';
+}
+function describePowerMoment(name,kind,context,explicitName,awakening){
+  const isDirect=name===explicitName, focus=String(context||'a atividade atual').replace(/\s+/g,' ').slice(0,150);
+  const details={
+    social:{
+      'Compreensão Absoluta':'A Compreensão Absoluta processa as palavras usadas, a sequência da conversa, o tom de voz e os sinais visíveis de expressão e postura. Ela separa o que a pessoa realmente disse das hipóteses sobre o que pode estar sentindo, ajudando o protagonista a entender melhor a interação sem presumir pensamentos alheios.',
+      'Otimização Absoluta':'A Otimização Absoluta organiza a resposta escolhida para que ela fique mais clara e coerente com a intenção do protagonista. Ajusta mentalmente a sequência das ideias e a comunicação ao ritmo da conversa, mas não escolhe as palavras nem decide por ele.',
+      'Memória Absoluta':'A Memória Absoluta registra a fala do protagonista, as respostas recebidas, o contexto, o horário e os sinais observáveis da interação. A lembrança fica vinculada à pessoa e pode ser recuperada em encontros futuros, inclusive para comparar mudanças no relacionamento.',
+      'Autorregulação Absoluta':'A Autorregulação Absoluta acompanha respiração, postura, atenção e tensão corporal durante a conversa. Faz os ajustes fisiológicos necessários para manter o organismo equilibrado, sem apagar nervosismo, alegria, tristeza ou qualquer emoção que o protagonista queira sentir.',
+      'Adaptação Absoluta':'A Adaptação Absoluta acompanha o ritmo social daquele encontro e ajusta a forma como o protagonista percebe mudanças de tom, pausas e contexto. Se surgir uma dinâmica realmente nova, começa a desenvolver uma resposta específica; não inventa intenções ocultas nem altera a personalidade do protagonista.'
+    },
+    cognitive:{
+      'Compreensão Absoluta':'A Compreensão Absoluta identifica o assunto, interpreta a explicação e conecta instantaneamente os conceitos e suas relações. Quando o conteúdo disponível é suficiente, o protagonista compreende o raciocínio por inteiro e pode aplicar imediatamente o que entendeu, sem depender de repetição convencional.',
+      'Otimização Absoluta':'A Otimização Absoluta reorganiza a maneira de estudar ou resolver a atividade, priorizando as etapas relevantes e eliminando repetições desnecessárias. Aperfeiçoa o método usado naquele instante, sem substituir a escolha do protagonista de estudar, perguntar ou interromper.',
+      'Memória Absoluta':'A Memória Absoluta registra o enunciado, a explicação, os exemplos, as dúvidas e as conclusões com precisão. Também associa o conteúdo a conhecimentos anteriores, permitindo recuperar a informação rapidamente em provas, conversas ou tarefas futuras.',
+      'Autorregulação Absoluta':'A Autorregulação Absoluta ajusta concentração, estado de alerta e equilíbrio fisiológico para acompanhar a atividade mental. Mantém o organismo estável durante o esforço cognitivo e regula a atenção sem provocar exaustão artificial.',
+      'Adaptação Absoluta':'A Adaptação Absoluta reconhece o formato do conteúdo e ajusta a maneira como o protagonista o acompanha — por exemplo, passando a lidar melhor com uma explicação visual, verbal ou abstrata. Se o método de ensino apresentar uma exigência inédita, desenvolve uma resposta específica e preserva essa evolução.'
+    },
+    physical:{
+      'Compreensão Absoluta':'A Compreensão Absoluta interpreta o movimento pretendido, a posição do corpo, o espaço disponível e a sequência necessária para executar a ação. Se a técnica estiver completamente compreendida, o protagonista pode reproduzi-la imediatamente com domínio.',
+      'Otimização Absoluta':'A Otimização Absoluta aperfeiçoa a coordenação, o equilíbrio e a sequência do movimento escolhido, reduzindo movimentos desnecessários e corrigindo imperfeições durante a execução. A ação continua sendo aquela que o protagonista decidiu realizar.',
+      'Memória Absoluta':'A Memória Absoluta registra o padrão do movimento, as sensações percebidas, o ambiente e o resultado. Cada execução pode ser comparada com as anteriores para recuperar detalhes e reconhecer melhorias.',
+      'Autorregulação Absoluta':'A Autorregulação Absoluta acompanha a resposta muscular, respiratória, cardiovascular e metabólica ao esforço. Ajusta o funcionamento interno para acompanhar a atividade e preservar o equilíbrio corporal, sem impor cansaço ou custos sobrenaturais artificiais.',
+      'Adaptação Absoluta':'A Adaptação Absoluta monitora as exigências físicas e as condições do ambiente. Quando aparece uma demanda realmente nova, inicia uma resposta adaptativa apropriada e a mantém disponível para situações futuras; adaptações anteriores continuam preservadas.'
+    },
+    rest:{
+      'Compreensão Absoluta':'A Compreensão Absoluta interpreta os sinais do ambiente e as informações disponíveis sobre o estado atual do protagonista, distinguindo o que é descanso, desconforto ou simples mudança de rotina.',
+      'Otimização Absoluta':'A Otimização Absoluta melhora a organização daquele período de descanso: reduz interrupções desnecessárias e ajusta a sequência da rotina para que o repouso escolhido seja aproveitado da melhor maneira possível.',
+      'Memória Absoluta':'A Memória Absoluta registra o horário, a duração e o contexto do descanso, além das conversas e acontecimentos anteriores que o protagonista queira recordar. Essas referências ficam disponíveis para comparar a rotina ao longo dos dias.',
+      'Autorregulação Absoluta':'A Autorregulação Absoluta coordena os processos fisiológicos associados ao repouso, regulando o equilíbrio interno, a respiração e a recuperação corporal conforme a necessidade do organismo.',
+      'Adaptação Absoluta':'A Adaptação Absoluta acompanha as condições do ambiente e a transição para um estado de menor atividade. Se houver uma condição nova que exija resposta específica, começa a desenvolvê-la; caso contrário, mantém as adaptações já conquistadas.'
+    },
+    environment:{
+      'Compreensão Absoluta':'A Compreensão Absoluta interpreta os detalhes presentes no ambiente — posições, movimentos, sons, objetos e relações espaciais — e organiza essas informações em uma leitura coerente da situação. Não transforma indícios ambíguos em certezas.',
+      'Otimização Absoluta':'A Otimização Absoluta organiza a atenção para que os detalhes relevantes sejam percebidos sem dispersão. Aperfeiçoa a maneira de observar e comparar elementos, mantendo a decisão sobre o que fazer nas mãos do protagonista.',
+      'Memória Absoluta':'A Memória Absoluta registra os detalhes observados, a disposição dos lugares, os sons e as mudanças percebidas. O cenário pode ser recuperado mentalmente e comparado com visitas anteriores.',
+      'Autorregulação Absoluta':'A Autorregulação Absoluta ajusta a atenção sensorial e as respostas fisiológicas às condições do local, mantendo o organismo equilibrado enquanto o protagonista observa ou explora.',
+      'Adaptação Absoluta':'A Adaptação Absoluta monitora alterações no ambiente e prepara respostas para condições que ainda não fazem parte das experiências anteriores. Quando encontra um fenômeno novo e relevante, inicia uma adaptação específica; a Roda da Evolução só registra uma rotação quando uma nova etapa adaptativa efetivamente começa.'
+    },
+    daily:{
+      'Compreensão Absoluta':'A Compreensão Absoluta interpreta as informações concretas da atividade — horários, preços, objetos, instruções e etapas — para que o protagonista entenda o que está fazendo e quais são as consequências evidentes.',
+      'Otimização Absoluta':'A Otimização Absoluta aperfeiçoa a organização da tarefa, encontrando uma sequência mais eficiente e evitando passos desnecessários, sem modificar o objetivo escolhido pelo protagonista.',
+      'Memória Absoluta':'A Memória Absoluta registra os detalhes relevantes da atividade, incluindo itens, valores, local, horário e resultado, para recuperação precisa em decisões futuras.',
+      'Autorregulação Absoluta':'A Autorregulação Absoluta mantém o equilíbrio fisiológico durante a rotina, ajustando atenção, postura e funcionamento interno de acordo com a atividade realizada.',
+      'Adaptação Absoluta':'A Adaptação Absoluta acompanha as condições da tarefa e ajusta a resposta do protagonista caso apareça uma exigência diferente das habituais, preservando qualquer adaptação útil que já tenha desenvolvido.'
+    },
+    general:{
+      'Compreensão Absoluta':`A Compreensão Absoluta interpreta a intenção descrita em “${focus}”, identifica as informações disponíveis e entende as etapas e consequências que podem ser deduzidas daquele contexto.`,
+      'Otimização Absoluta':`A Otimização Absoluta examina a ação “${focus}” e aperfeiçoa a organização e a execução daquilo que o protagonista decidiu fazer, sem tomar a decisão por ele.`,
+      'Memória Absoluta':`A Memória Absoluta registra a intenção, o que foi feito, o contexto, o horário e o resultado observável de “${focus}”. O registro fica indexado para ser recuperado e comparado com experiências futuras.`,
+      'Autorregulação Absoluta':'A Autorregulação Absoluta monitora o organismo durante a ação e ajusta automaticamente os processos internos pertinentes, mantendo equilíbrio fisiológico e controle voluntário das emoções.',
+      'Adaptação Absoluta':'A Adaptação Absoluta acompanha a situação e identifica se existe uma exigência nova. Quando existe, começa a desenvolver uma resposta específica; quando não existe, permanece em monitoramento ativo e preserva todas as adaptações anteriores.'
+    }
+  };
+  let effect=(details[kind]||details.general)[name]||'O poder acompanha a ação e contribui dentro de seu domínio.';
+  if(isDirect)effect='ATIVAÇÃO CONSCIENTE — '+effect+' O protagonista direcionou este poder voluntariamente.';
+  else if(awakening)effect='DESPERTAR — '+effect;
+  return effect;
+}
+function applySupremeSynergy(context,explicitName='',awakening=false){
+  if(!game)return;ensureSupremePowers();game.powerEvents=[];
+  const c=String(context||'a ação atual'),moment=classifyPowerMoment(c);
+  for(const p of powers){
+    const effect=describePowerMoment(p.name,moment,c,explicitName,awakening);
+    const kind=p.name===explicitName?'Ativação consciente + sinergia':(awakening?'Despertar integrado':'Atuação passiva contextual');
+    recordPowerUse(p.name,effect,kind);
+  }
+  if(explicitName==='Adaptação Absoluta'){
+    const a=game.powers.find(x=>x.name==='Adaptação Absoluta');
+    if(a){a.adaptiveRotations=(a.adaptiveRotations||0)+1;a.evolutionCount=(a.evolutionCount||0)+1;const event=game.powerEvents.find(x=>x.name==='Adaptação Absoluta');if(event)event.effect+=` A Roda da Evolução gira e registra a rotação ${a.adaptiveRotations}: o próprio processo adaptativo está sendo aperfeiçoado nesta ativação.`;}
+  }
+  const momentText=game.powerEvents.map(e=>`${e.name}: ${e.effect}`).join('\n');
+  game.powerNarrative=`✦ O QUE OS PODERES FIZERAM NESTE INSTANTE\n${momentText}`;
+  game.journal=game.journal||[];
+  game.journal.push(`Registro dos cinco poderes · ${timeLabel()} · ${c}\n${momentText}`);
+}
+function renderPowerActivity(){const box=$('powerActivity'),list=$('powerActivityList');if(!box||!list||!game)return;const events=game.powerEvents||[];if(!events.length){box.classList.add('hidden');list.innerHTML='';return;}box.classList.remove('hidden');list.innerHTML=events.map(e=>`<div class="power-use"><strong>✦ ${esc(e.name)} <span class="use-kind">${esc(e.kind)}</span></strong><p>${esc(e.effect)}</p></div>`).join('');}
+function detectNamedPower(text){const t=String(text||'').toLowerCase();if(/compreens|entender absolutamente|compreender tudo/.test(t))return'Compreensão Absoluta';if(/otimiz|aperfeiçoar tudo|melhorar tudo/.test(t))return'Otimização Absoluta';if(/mem[oó]ria absoluta|lembrar perfeitamente|recordar tudo/.test(t))return'Memória Absoluta';if(/autorregula|controlar meu corpo|regular meu organismo/.test(t))return'Autorregulação Absoluta';if(/adapta[cç][aã]o absoluta|roda da evolu[cç][aã]o|adaptar-me a/.test(t))return'Adaptação Absoluta';return'';}
+function moneyFmt(n){return 'R$ '+Number(n||0).toFixed(2).replace('.',',')}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}
+function addXP(n,why){game.xp+=n;while(game.xp>=game.level*100){game.xp-=game.level*100;game.level++;game.reputation+=1;toast('Novo nível! Você alcançou o nível '+game.level+'.')}if(why)game.journal.push(why)}
+function addMemory(npc,text){if(!npc)return;npc.memory.push({day:game.day,text});if(npc.memory.length>8)npc.memory.shift()}
+function relationship(name){return game.relationships.find(n=>n.name.toLowerCase()===name.toLowerCase())}
+function affect(name,aff,trust,mem){let n=relationship(name);if(!n)return;n.affinity=Math.max(0,Math.min(100,n.affinity+aff));n.trust=Math.max(0,Math.min(100,n.trust+trust));if(mem)addMemory(n,mem)}
+function advance(mins){let old=game.minute;game.minute+=mins;game.energy=Math.max(0,Math.min(100,game.energy-Math.floor(mins/75)));if(game.minute>=1440){game.minute-=1440;game.day++;game.flags={hadBreakfast:false,schoolVisited:false,homework:false,late:false};game.school='Pendente';game.scene='morning';game.location='Casa';game.energy=Math.min(100,game.energy+25);game.journal.push(`Dia ${game.day}: um novo dia começou.`);worldTick();return}if(Math.floor(old/120)!==Math.floor(game.minute/120))worldTick()}
+function worldTick(){game.relationships.forEach(n=>{if(Math.random()<.18){n.mood=['Tranquilo','Animado','Pensativo','Cansado'][Math.floor(Math.random()*4)]}});}
+function setScene(scene,loc){game.scene=scene;if(loc)game.location=loc;}
+function takeChoice(index){let s=sceneContent(),act=s.choices[index]?.act;if(!act)return;perform(act)}
+function perform(act){let msg='';switch(act){
+case'ready':advance(10);game.energy=Math.max(0,game.energy-2);setScene('breakfast','Casa');msg='Você se senta na cama, afasta o cobertor e leva alguns segundos para despertar por completo. O chão está frio quando seus pés o alcançam. Depois de arrumar a cama e se preparar, a sensação de sono diminui; a manhã finalmente começa de verdade.';break;
+case'sleep':if(game.scene==='evening'||game.minute>1200||game.energy<28){advance(600);game.energy=Math.min(100,game.energy+52);setScene('morning','Casa');msg='Você permite que o cansaço vença e deixa o tempo passar. O descanso ocupa várias horas; quando desperta, a luz e os sons da casa já são outros. Você recuperou parte das energias, mas o dia avançou e algumas oportunidades da manhã ficaram para trás.'}else{advance(25);game.energy=Math.min(100,game.energy+5);setScene('morning','Casa');msg='Você fecha os olhos por mais alguns minutos. O descanso é curto e não resolve tudo, mas ajuda a organizar os pensamentos. Quando se levanta, percebe que o relógio avançou e será melhor decidir logo como usar o restante da manhã.'}break;
+case'phone':advance(5);openModal('phone');return;
+case'family':advance(12);let mom=game.relationships[0];affect(mom.name,2,2,'Conversaram em casa.');if(Math.random()<.3)game.mood='Acolhido';setScene(game.minute<450?'breakfast':'home','Casa');msg=`Você puxa uma conversa com ${mom.name}. Ela interrompe por um momento o que estava fazendo e presta atenção. A conversa não transforma a rotina da casa, mas cria um pequeno espaço de convivência. A confiança entre vocês recebe um sinal positivo; o tom e o conteúdo da conversa poderão influenciar os próximos encontros.`;break;
+case'breakfast':game.flags.hadBreakfast=true;advance(20);game.energy=Math.min(100,game.energy+12);affect('Marina',2,1,'Compartilharam um momento no café.');setScene('breakfast','Casa');msg='Você se senta para tomar café. O tempo passa entre pequenos comentários, sons de louça e a preparação para sair. A refeição ajuda a recuperar um pouco de energia e cria uma lembrança cotidiana compartilhada com a família.';break;
+case'bag':advance(8);game.journal.push('Conferiu a mochila e organizou o material.');setScene(game.location==='Escola'?'class':'breakfast',game.location);msg='Você abre a mochila e confere os materiais um por um. O caderno está no lugar, o estojo tem o necessário e você verifica se não esqueceu a atividade. Essa pequena organização evita parte da correria mais tarde e deixa a sensação de que está um pouco mais preparado.';break;
+case'school':advance(25);if(game.minute>480){game.flags.late=true;game.school='Chegou atrasado';game.reputation-=1;msg='Você chega quando a aula já começou. O corredor está mais silencioso e, ao entrar, percebe alguns olhares rápidos. A professora registra o atraso e você perde parte das primeiras orientações. Não é o fim do mundo, mas terá de recuperar o que foi explicado.'}else{game.school='Presente';msg='Você atravessa o portão antes do início da aula. Ainda há alguns minutos de movimento no pátio; estudantes conversam, organizam materiais e procuram suas salas. Você conseguiu chegar no horário e tem um instante para escolher como começar a manhã.'}game.flags.schoolVisited=true;setScene('school','Escola');break;
+case'caio':advance(10);affect('Caio',5,3,'Conversaram no pátio.');game.mood='Sociável';setScene('school','Escola');msg='Caio percebe sua aproximação e abre espaço no banco. — E aí, como foi sua manhã? — pergunta, afastando o celular para prestar atenção. A conversa começa sem pressa. Ele parece receptivo, e o contato aumenta um pouco a afinidade e a confiança entre vocês.';break;
+case'livia':advance(10);affect('Lívia',4,3,'Conversaram sobre as anotações.');setScene('school','Escola');msg='Lívia ergue os olhos do caderno e mostra as anotações. — Estou tentando deixar essa parte organizada antes da aula — comenta. Ela aponta um trecho que considera importante e explica por que marcou aquela informação. A conversa oferece uma oportunidade de trocar ideias e construir confiança.';break;
+case'class':advance(45);game.school='Em aula';setScene('class','Sala de aula');msg='A professora inicia a explicação e escreve os primeiros tópicos no quadro. O som de canetas e páginas viradas preenche a sala. Aos poucos, a turma acompanha o assunto. Você tem a oportunidade de prestar atenção, perguntar quando algo não estiver claro e participar da atividade que será entregue no fim do período.';break;
+case'study':advance(35);game.energy=Math.max(0,game.energy-5);addXP(18,'Você reservou um tempo para estudar.');game.school='Estudou';let inClass=game.location==='Sala de aula';setScene(inClass?'interval':'home',inClass?'Escola':'Casa');msg='Você organiza o material e dedica alguns minutos ao conteúdo. No começo, uma parte parece confusa; reler o enunciado e dividir a tarefa em etapas ajuda a compreender melhor. O esforço rende experiência de estudo, embora também consuma um pouco de energia. O aprendizado se constrói aos poucos, não de uma só vez.';break;
+case'question':advance(12);addXP(10,'Você participou da aula fazendo uma pergunta.');game.reputation+=1;setScene('interval','Escola');msg='A professora interrompe a explicação para ouvir sua pergunta. Ela reformula o exemplo no quadro e explica o raciocínio por outra perspectiva. Alguns colegas acompanham a resposta. — Boa pergunta; é importante perceber quando uma etapa não ficou clara — comenta. Você recebe experiência e sua participação passa a ser notada.';break;
+case'talk':advance(10);affect('Caio',1,1,'Trocaram algumas palavras durante a aula.');setScene('interval','Escola');msg='Você troca algumas palavras com um colega, com cuidado para não interromper a aula. A conversa é breve, mas ajuda a quebrar a monotonia. Quando a explicação continua, vocês voltam a atenção para a atividade; a relação ganha um pequeno registro compartilhado.';break;
+case'homework':advance(30);game.flags.homework=true;addXP(15,'Você concluiu uma atividade escolar.');game.school='Atividade concluída';setScene(game.location==='Escola'?'interval':'home',game.location);msg='Você revisa a atividade, corrige um detalhe e organiza as respostas antes de entregar. A tarefa exige atenção e tempo, mas fica concluída. Ao guardar o material, sente que resolveu uma pendência importante do dia e registra um avanço no desempenho escolar.';break;
+case'interval':advance(15);setScene('interval','Pátio');msg='O sinal do intervalo tocou. O pátio ficou mais movimentado.';break;
+case'friends':advance(25);affect('Caio',3,2,'Passaram um tempo juntos.');affect('Lívia',2,1,'Conversaram durante o dia.');game.mood='Mais animado';addXP(8,'Você dedicou tempo à vida social.');setScene(game.location==='Escola'?'interval':'home','Pátio');msg='Você se aproxima do grupo e a conversa começa com assuntos simples. Aos poucos surgem comentários sobre a aula, planos para depois da escola e pequenas novidades que você ainda não conhecia. Nem todos falam o tempo todo, mas você consegue participar e fortalecer os vínculos com quem está por perto.';break;
+case'buy':advance(10);if(game.money>=8){game.money-=8;game.inventory.push('Lanche');game.energy=Math.min(100,game.energy+7);msg='Você comprou um lanche por R$ 8,00.'}else msg='Você conferiu o dinheiro e decidiu guardar para outra ocasião.';setScene('interval','Cantina');break;
+case'quiet':advance(15);game.mood='Tranquilo';setScene('interval','Pátio');msg='Você escolhe um lugar mais afastado do movimento. O barulho do pátio fica distante o bastante para permitir alguns minutos de tranquilidade. Sem precisar acompanhar todas as conversas, você respira, organiza os pensamentos e volta a se sentir mais equilibrado.';break;
+case'teacher':advance(12);addXP(7,'Você conversou com uma professora.');setScene('interval','Corredor');msg='A professora respondeu com atenção e comentou que está disponível para dúvidas.';break;
+case'afternoon':advance(35);setScene('afternoon','Escola');msg='As aulas terminaram e a tarde começou.';break;
+case'home':advance(25);setScene('home','Casa');msg='O caminho de volta passa por ruas conhecidas e por pessoas que seguem seus próprios compromissos. Ao chegar, você deixa a mochila em um lugar habitual e percebe que o clima da casa está um pouco diferente do da escola. O restante do dia está aberto, mas as tarefas e relações continuam existindo.';break;
+case'rest':advance(50);game.energy=Math.min(100,game.energy+22);game.mood='Descansado';setScene('evening','Casa');msg='Você encontra um lugar confortável e se permite parar. Durante o descanso, o ritmo da casa continua ao fundo, mas ninguém exige sua atenção naquele momento. A energia aumenta e o humor melhora; descansar agora pode ajudar a lidar com o que ainda vier pela frente.';break;
+case'town':advance(25);setScene('town','Bairro');msg='Você sai de casa e percorre parte do bairro. O caminho tem sons, cheiros e pessoas diferentes dos que encontra na escola. Algumas lojas estão abertas e moradores seguem suas rotinas. Você ganha uma noção melhor dos arredores e pode decidir onde parar.';break;
+case'park':advance(20);game.mood='Tranquilo';addXP(5,'Você passou um tempo na praça.');setScene('town','Praça');msg='A praça está relativamente tranquila. Algumas pessoas caminham, outras conversam perto dos bancos e uma criança brinca ao longe sob a supervisão de um adulto. Você encontra um lugar para ficar por alguns minutos. O movimento cotidiano ajuda a conhecer melhor o bairro sem precisar ter um destino específico.';break;
+case'shop':advance(15);setScene('town','Papelaria');msg='Você entrou na papelaria e observou os materiais disponíveis.';break;
+case'journal':advance(5);openModal('journal');return;
+case'power':openModal('powers');return;
+case'observe':advance(8);addXP(9,'Você praticou observação, compreensão de contexto e reconhecimento de padrões.');msg='Você reduz o ritmo e presta atenção ao ambiente. A Compreensão Absoluta interpreta instantaneamente sons, movimentos, relações e detalhes que compõem a cena; a Memória Absoluta registra os elementos percebidos; e a Adaptação Absoluta acompanha as mudanças do ambiente. Você continua livre para decidir o que fazer com aquilo que percebeu.';break;
+}
+if(msg){game.journal.push(msg);game.lastMessage=msg}maybeEvent();renderScene();save();}
+function usePower(name){if(!game)return;ensureSupremePowers();const p=game.powers.find(x=>x.name===name);if(!p){toast('Selecione um dos cinco poderes absolutos.');return;}const descriptions={
+'Compreensão Absoluta':'Você direciona a Compreensão Absoluta para o que deseja entender. Em um instante, o poder assimila os mecanismos, princípios, relações e detalhes relevantes. Ao compreender completamente uma técnica ou procedimento, você pode executá-lo imediatamente com domínio, sem treinamento convencional.',
+'Otimização Absoluta':'Você aciona a Otimização Absoluta. O sistema examina a capacidade ou atividade escolhida, identifica imperfeições e implementa uma versão superior. A otimização também aperfeiçoa o próprio processo, abrindo novas possibilidades recursivas.',
+'Memória Absoluta':'Você acessa a Memória Absoluta. Todas as lembranças e informações devidamente registradas ficam disponíveis instantaneamente; o poder recupera detalhes, compara experiências e organiza as referências sem confusão ou perda.',
+'Autorregulação Absoluta':'Você direciona a Autorregulação Absoluta ao próprio organismo. Os sistemas internos são monitorados e ajustados de maneira coordenada, mantendo o equilíbrio fisiológico e acompanhando as capacidades atuais, sem apagar emoções ou controlar suas decisões pessoais.',
+'Adaptação Absoluta':'Você permite que a Adaptação Absoluta responda ao fenômeno escolhido. O sistema reconhece suas propriedades, inicia o desenvolvimento de uma resposta específica e continua aperfeiçoando-a. A Roda da Evolução pode manifestar-se; cada rotação registra uma nova etapa, sem quantidade máxima nem estágio final obrigatório.'
+};
+  applySupremeSynergy(`O protagonista ativou conscientemente ${p.name}.`,name,false);
+  const narrative=descriptions[name]||'O poder se manifesta e atua em sinergia com os demais sistemas.';game.lastMessage=narrative+'\n\nA atuação específica dos cinco sistemas neste instante está descrita no registro logo abaixo.';
+  game.journal.push(`Ativação consciente de ${name}. ${narrative}`);renderScene();save();toast(name+' ativada em sinergia total.');
+}
+
+function maybeEvent(){game.eventCount++;if(game.eventCount%4===0){let n=game.relationships[Math.floor(Math.random()*game.relationships.length)];if(n){game.messages.unshift({from:n.name,text:n.name==='Caio'?'Você vai fazer alguma coisa depois da aula?':'Como está seu dia? Quando puder, me chama.'});toast('Você recebeu uma nova mensagem.')}}if(game.minute>1080&&game.scene!=='evening'&&game.scene!=='morning'){setScene('evening',game.location)}}
+function buildNpcReply(n,text,lower){
+  const name=n.name, previousMemory=n.memory?.length?n.memory[n.memory.length-1]:null, isQuestion=/\?|pergunt|como foi|o que acha|o que pensa|por que|qual/.test(lower);
+  let line='Pode falar. Estou ouvindo.';
+  if(/desculp|perd[aã]o|foi mal/.test(lower)){
+    line='Tudo bem. Obrigado por falar comigo. Só queria que a gente conseguisse conversar com sinceridade.';
+    affect(name,4,5,`Você pediu desculpas: “${text.slice(0,100)}”`);n.mood='Mais tranquilo';
+  }else if(/obrigad|valeu|agrade[cç]/.test(lower)){
+    line='Imagina. Fico feliz que você tenha falado isso.';affect(name,4,3,`Você agradeceu: “${text.slice(0,100)}”`);n.mood='Contente';
+  }else if(/gosto de voc[eê]|voc[eê] [eé] importante|admiro|legal|bacana|parab[eé]ns/.test(lower)){
+    line='Poxa, obrigado. É bom saber que você pensa assim.';affect(name,4,3,`Você demonstrou consideração: “${text.slice(0,100)}”`);n.mood='Contente';
+  }else if(/vamos|quer ir|quer fazer|bora|topa/.test(lower)){
+    line='Pode ser. Me conta melhor o que você está pensando e a gente combina.';affect(name,3,2,`Você fez um convite: “${text.slice(0,100)}”`);n.mood='Interessado';
+  }else if(isQuestion){
+    line=n.role==='Mãe'?'Foi um dia cheio, mas está tudo bem. E você, como está se sentindo?':n.role==='Pai'?'Estou resolvendo algumas coisas, mas posso conversar um pouco. O que você queria saber?':n.name==='Caio'?'Ah, eu acho que depende. Hoje aconteceu uma coisa interessante na aula. Você percebeu?':'Eu estava pensando nisso também. Posso te mostrar o que anotei, talvez ajude.';
+    affect(name,2,2,`Você perguntou: “${text.slice(0,100)}”`);
+  }else if(/oi|ol[aá]|bom dia|boa tarde|boa noite|e a[ií]/.test(lower)){
+    line=n.role==='Mãe'?'Oi! Que bom que veio conversar. Como está sua manhã?':n.role==='Pai'?'E aí! Tudo certo por aqui. Como foi seu dia?':`Oi! Tudo bem? Eu estava ${n.name==='Caio'?'falando com o pessoal':'organizando minhas coisas'} agora.`;
+    affect(name,2,1,`Você cumprimentou ${name}.`);
+  }else if(/n[aã]o gostei|me deixa|para com|me irrit/.test(lower)){
+    line='Entendi. Não era minha intenção piorar as coisas. Podemos conversar melhor quando você quiser.';affect(name,-3,-4,`Houve um momento de tensão: “${text.slice(0,100)}”`);n.mood='Incomodado';
+  }else{
+    line=n.role==='Mãe'?'Entendi o que você quis dizer. Quer me explicar melhor?':n.role==='Pai'?'Certo. Estou prestando atenção, pode continuar.':`Entendi. E o que você pretende fazer agora?`;
+    affect(name,1,1,`Conversa: “${text.slice(0,100)}”`);
+  }
+  const memoryNote=previousMemory?`\n\nA conversa anterior também influencia o encontro. ${name} parece se lembrar de quando vocês falaram sobre: “${previousMemory.text}”. Isso muda o contexto da resposta atual, sem obrigar a pessoa a concordar com você.`:'';
+  return `${name} interrompe por um instante o que estava fazendo e volta a atenção para você. ${n.role==='Mãe'?'Ela':n.role==='Pai'?'Ele':'A pessoa'} escuta sua fala até o fim, sem responder antes de entender o contexto.\n\n${name}: — ${line}${memoryNote}\n\nA resposta não encerra necessariamente o assunto. Você pode continuar a conversa, mudar de tema ou simplesmente deixar a outra pessoa seguir sua rotina.`;
+}
+function performFree(text){
+  text=String(text||'').trim();if(!text)return;const lower=text.toLowerCase();let speaker='Narrador',response='',person=null;
+  game.journal.push(`Você: ${text}`);
+  if(/m[aã]e|marina/.test(lower))person=relationship('Marina');
+  else if(/pai|rafael/.test(lower))person=relationship('Rafael');
+  else if(/caio/.test(lower))person=relationship('Caio');
+  else if(/l[ií]via/.test(lower))person=relationship('Lívia');
+  else if(/amigo|colega|conversar com algu[eé]m|falar com algu[eé]m/.test(lower))person=game.location==='Escola'||game.location==='Pátio'?relationship('Caio'):relationship('Marina');
+
+  const requestedPower=detectNamedPower(text), directActivation=!!requestedPower&&/uso|utilizo|ativo|aciono|canalizo|invoco|quero usar|vou usar/.test(lower);
+  if(directActivation){
+    advance(3);speaker='Narrador';response=`Você decide ativar conscientemente ${requestedPower}: “${text}”. No instante em que formula a intenção, o poder responde dentro de seu domínio. A manifestação acontece sem custo, recarga ou esgotamento. Os outros quatro sistemas acompanham o processo e mostram suas contribuições específicas no registro desta cena.`;
+  }
+  else if(person){
+    advance(8);speaker=person.name;response=`Você escolhe falar com ${person.name}. ${person.name} está ${person.mood.toLowerCase()} e termina o que fazia antes de se voltar para você.\n\nVocê: — ${text}\n\n${buildNpcReply(person,text,lower)}`;
+    if(/brav|grit|xinga|insulta/.test(lower)){person.mood='Irritado';affect(person.name,-5,-7,'A conversa teve um tom agressivo.');response+=`\n\nO tom da conversa pesa um pouco. ${person.name} fica mais reservado e a confiança diminui; essa impressão pode permanecer quando vocês se encontrarem novamente.`;}
+    setScene(game.location==='Escola'||game.location==='Pátio'?'interval':'home',game.location);
+  }
+  else if(/estud|aula|professor|tarefa|dever|caderno|ler|livro|aprender|pesquis/.test(lower)){
+    advance(25);addXP(12,'Você dedicou tempo a uma atividade de aprendizagem.');game.school='Estudou';speaker='Narrador';
+    response=`Você coloca sua intenção em prática: “${text}”. Organiza o material e dedica atenção ao assunto. Primeiro identifica o que já sabe; depois separa as partes que precisam ser entendidas e trabalha nelas uma por uma. O tempo passa enquanto você compara informações, revê exemplos e chega a uma conclusão.\n\nO resultado fica registrado como uma atividade de estudo. A Compreensão Absoluta permite assimilar o conteúdo que foi efetivamente apresentado; não precisa fingir que existia informação que você ainda não encontrou. O que estiver ao alcance da atividade pode ser compreendido e aplicado imediatamente.`;
+    setScene(game.location==='Escola'||game.location==='Sala de aula'?'interval':'home',game.location);
+  }
+  else if(/correr|caminh|andar|trein|jogar bola|futebol|exerc[ií]cio|pular|dan[cç]ar/.test(lower)){
+    advance(18);game.energy=Math.max(0,game.energy-3);addXP(6,'Você realizou uma atividade física na campanha.');speaker='Narrador';
+    response=`Você começa a ação que descreveu: “${text}”. O corpo entra em movimento e o ambiente passa a ser percebido em sequência — distância, ritmo, equilíbrio e mudanças no terreno. A atividade dura alguns minutos; quando termina, você tem uma noção melhor do esforço realizado e do espaço ao redor.\n\nA experiência é registrada para comparação com atividades futuras. O esforço não consome nem enfraquece os poderes; a energia exibida no painel representa apenas a rotina normal do protagonista.`;
+    setScene(game.location==='Escola'?'interval':'town',game.location);
+  }
+  else if(/observar|olhar ao redor|prestar aten[cç][aã]o|examinar|analisar o ambiente/.test(lower)){
+    advance(8);addXP(7,'Você observou o ambiente com atenção.');speaker='Narrador';
+    response=`Você interrompe o que estava fazendo e observa: “${text}”. Em vez de olhar apenas para o ponto principal, percebe a disposição do lugar, os movimentos ao redor, os sons próximos e as mudanças mais discretas. Alguns detalhes são claros; outros permanecem ambíguos até que você tenha mais informação.\n\nA observação não obriga você a agir. Agora há mais elementos para decidir se deseja se aproximar, perguntar algo ou continuar seu caminho.`;
+  }
+  else if(/dormir|deitar|sono|descansar|relaxar/.test(lower)){
+    advance(500);game.energy=Math.min(100,game.energy+40);speaker='Narrador';response=`Você decide descansar: “${text}”. Encontra uma posição confortável e deixa as atividades em pausa. Os sons da casa ou do local ficam mais distantes à medida que o tempo passa. Quando desperta, o horário já mudou e a rotina dos demais personagens também avançou.\n\nO descanso recupera parte da energia normal do protagonista. A Autorregulação Absoluta acompanha os processos fisiológicos durante todo o período.`;setScene('morning','Casa');
+  }
+  else if(/poder|habilidade|compreens|otimiz|mem[oó]ria absoluta|autorregula|adapta[cç][aã]o absoluta|roda da evolu[cç][aã]o/.test(lower)){
+    advance(3);const target=detectNamedPower(text);speaker='Narrador';response=target?`Você direciona sua atenção para ${target} e formula a intenção: “${text}”. O sistema responde naquele instante, dentro de sua área de domínio. Os outros quatro poderes acompanham a manifestação em sinergia e registram cada contribuição no painel abaixo.`:'Você chama conscientemente os cinco sistemas. Cada um responde em sua própria área: compreensão, aperfeiçoamento, memória, regulação do organismo e adaptação. Você continua decidindo o objetivo e o que fazer com o resultado.';
+  }
+  else if(/comprar|loja|lanche|cantina/.test(lower)){
+    advance(10);if(game.money>=8){game.money-=8;game.inventory.push('Item comprado');response=`Você confere os produtos e os preços antes de escolher. Depois de decidir, paga R$ 8,00 e guarda o item. O dinheiro disponível diminui e a compra passa a constar no inventário.\n\nVocê não precisa concluir a compra se mudar de ideia; por enquanto, esta ação foi registrada como uma compra simples.`;}else response=`Você olha os produtos e confere o dinheiro que tem. Como o valor disponível não cobre a compra, decide não gastar agora. O item permanece na loja e seu saldo não muda.`;setScene('interval','Cantina');
+  }
+  else if(/desculp|perd[aã]o|foi mal/.test(lower)){
+    advance(5);game.mood='Reflexivo';let n=person||game.relationships[0];if(n){affect(n.name,2,3,`Você tentou reparar a situação: “${text.slice(0,90)}”`);response=`Você tenta reconhecer o que aconteceu: “${text}”. ${n.name} escuta sem interromper.\n\n${n.name}: — Obrigado por falar. Eu ainda preciso pensar um pouco, mas é bom que a gente consiga conversar.\n\nO pedido de desculpas abre espaço para reparar a relação, embora não apague automaticamente o que aconteceu.`;}else response=`Você tenta reconhecer o que aconteceu: “${text}”. A atitude pode iniciar uma conversa de reparação, mas a confiança se reconstrói com consistência e tempo.`;
+  }
+  else if(/mentir|ment|esconder|inventar/.test(lower)){
+    advance(5);let n=person||game.relationships[2];if(n){n.trust=Math.max(0,n.trust-3);addMemory(n,'Percebeu uma resposta pouco clara.');}response=`Você escolhe não revelar tudo: “${text}”. A conversa segue, mas uma parte da explicação não parece combinar com o que a outra pessoa observou. Não é possível afirmar que alguém percebeu a mentira; ainda assim, se a contradição aparecer depois, a confiança poderá ser afetada.`;
+  }
+  else if(/ir para|vou para|andar at[eé]|visitar|pra[cç]a|bairro|rua|ir at[eé]/.test(lower)){
+    advance(18);setScene('town','Bairro');response=`Você começa a seguir o destino descrito: “${text}”. O caminho leva alguns minutos. Pessoas continuam ocupadas com seus próprios compromissos, enquanto lojas, casas e pontos conhecidos aparecem ao longo da rua. Ao chegar, você pode explorar o local, procurar alguém ou mudar de ideia.`;
+  }
+  else{
+    advance(8);game.mood='Pensativo';addXP(2,'Você tomou uma iniciativa própria.');
+    response=`Você decide agir por conta própria: “${text}”. A ação começa no lugar em que você está, e o tempo avança alguns minutos. O ambiente não congela: as pessoas continuam com suas tarefas, algumas percebem seu movimento e outras seguem distraídas.\n\nComo a frase não especifica um interlocutor, objeto ou destino claro, o jogo registra sua intenção sem inventar um resultado preciso. Você pode acrescentar detalhes em uma nova ação para definir exatamente o que acontece em seguida.`;
+  }
+  const context=`\n\nA ação de ${game.profile.name} foi registrada às ${timeLabel()}, em ${game.location}. As pessoas envolvidas mantêm a própria rotina e podem lembrar do que foi dito ou feito. Algumas consequências aparecem agora; outras dependem de encontros e escolhas futuras.`;
+  response+=context;game.lastMessage=response;game.journal.push(`${speaker}: ${response}`);maybeEvent();renderScene();save();
+}
+$('sendFree').addEventListener('click',()=>{let v=$('freeInput').value; if(!v.trim())return; $('freeInput').value='';performFree(v)});$('freeInput').addEventListener('keydown',e=>{if(e.key==='Enter')$('sendFree').click()});
+function openModal(type){const root=$('modalRoot');let title='',body='';if(type==='profile'){title='Perfil do protagonista';let p=game.profile;body=`<div class="two-col"><div class="stat-card"><div class="tiny">NOME</div><b>${esc(p.name)}</b></div><div class="stat-card"><div class="tiny">IDADE</div><b>${p.age} anos</b></div><div class="stat-card"><div class="tiny">LOCALIZAÇÃO</div><b>${esc(game.location)}</b></div><div class="stat-card"><div class="tiny">DINHEIRO</div><b>${moneyFmt(game.money)}</b></div></div><h3>História construída</h3>${Object.entries(p.answers).map(([k,v])=>`<div class="item-row"><span class="tiny">Pergunta ${Number(k)+1}</span><div>${esc(v)}</div></div>`).join('')}<p class="tiny">Essas respostas ajudam a orientar a narrativa; você pode continuar desenvolvendo o protagonista por meio das escolhas.</p>`;}
+else if(type==='relations'){title='Relacionamentos';body=game.relationships.map(n=>`<div class="person-row"><div style="display:flex;justify-content:space-between;gap:8px"><b>${esc(n.name)} · ${esc(n.role)}</b><span class="pill">${esc(n.mood)}</span></div><div class="statline"><span>Afinidade</span><b>${n.affinity}/100</b></div><div class="meter"><i style="width:${n.affinity}%"></i></div><div class="statline"><span>Confiança</span><b>${n.trust}/100</b></div><div class="meter"><i style="width:${n.trust}%"></i></div><div class="tiny">Objetivo: ${esc(n.goal)}</div><div class="tiny">Rotina: ${esc(n.routine)}</div><details style="margin-top:7px"><summary class="tiny">Memórias compartilhadas (${n.memory.length})</summary>${n.memory.length?n.memory.map(m=>`<div class="tiny">Dia ${m.day}: ${esc(m.text)}</div>`).join(''):'<div class="tiny">Ainda estão se conhecendo.</div>'}</details></div>`).join('');}
+else if(type==='powers'){title='Os cinco poderes absolutos';ensureSupremePowers();body=`<p class="tiny">Todos os cinco estão no auge absoluto, funcionam passiva e ativamente, não possuem custos, recargas ou limites fixos e continuam evoluindo. Sempre que forem utilizados em uma ação, o registro aparece na própria cena.</p>${game.powers.map(p=>`<div class="item-row"><h3 style="margin:0">✦ ${esc(p.name)} <span class="pill">AUGE ABSOLUTO</span></h3><p>${esc(p.description)}</p><p class="tiny"><b>Atuação passiva:</b> ${esc(p.passive)}</p><ul class="ability-list">${p.abilities.map(x=>`<li>${esc(x)}</li>`).join('')}</ul>${p.wheel?`<p class="tiny"><b>Roda da Evolução:</b> ${esc(p.wheel)}</p><p class="tiny"><b>Rotações registradas:</b> ${p.adaptiveRotations||0} · <b>Evoluções registradas:</b> ${p.evolutionCount||0}</p>`:''}<div class="statline"><span>Utilizações registradas</span><b>${p.uses||0}</b></div><button class="small secondary" data-activate="${esc(p.name)}">Ativar conscientemente</button>${p.history?.length?`<details style="margin-top:8px"><summary class="tiny">Últimas utilizações (${p.history.length})</summary>${p.history.slice(0,5).map(h=>`<div class="tiny" style="padding:6px 0;border-top:1px solid #303957">Dia ${h.day} · ${esc(h.time)}<br>${esc(h.effect)}</div>`).join('')}</details>`:''}</div>`).join('')}`;}
+else if(type==='inventory'){title='Inventário';body=`<div class="tiny">Itens que acompanham você.</div>${game.inventory.map((x,i)=>`<div class="item-row" style="display:flex;justify-content:space-between"><span>▣ ${esc(x)}</span><span class="pill">${i<3?'Essencial':'Adquirido'}</span></div>`).join('')}`;}
+else if(type==='map'){title='Mapa de lugares';body=`<div class="stat-card"><b>⌂ Casa</b><div class="tiny">Ponto de descanso e convivência familiar.</div></div><div class="stat-card" style="margin-top:8px"><b>▤ Escola</b><div class="tiny">Aulas, colegas, professores e atividades.</div></div><div class="stat-card" style="margin-top:8px"><b>⌖ Praça e bairro</b><div class="tiny">Comércio, espaços públicos e encontros inesperados.</div></div><p class="tiny">Local atual: ${esc(game.location)}. Os destinos são acessados pelas escolhas das cenas.</p>`;}
+else if(type==='calendar'){title='Calendário e rotina';body=`<div class="stat-card"><div class="eyebrow">HOJE</div><h3 style="margin:4px 0">${days[(game.day-1)%7]}, dia ${game.day}</h3><b>${timeLabel()}</b><div class="timeline"><div><b>06:30</b><br><span class="tiny">Início da manhã e rotina em casa</span></div><div><b>07:15–12:00</b><br><span class="tiny">Período escolar, quando houver aula</span></div><div><b>12:00–18:00</b><br><span class="tiny">Tarde livre, estudos e atividades</span></div><div><b>18:00 em diante</b><br><span class="tiny">Rotina familiar e descanso</span></div></div></div>`;}
+else if(type==='phone'){title='Celular';body=`<div class="stat-card"><div class="eyebrow">MENSAGENS</div>${game.messages.length?game.messages.map(m=>`<div class="item-row"><b>${esc(m.from)}</b><div>${esc(m.text)}</div><span class="tiny">Agora · Dia ${game.day}</span></div>`).join(''):'<div class="empty">Nenhuma mensagem nova.</div>'}</div><div class="stat-card" style="margin-top:10px"><b>Rede social fictícia</b><p class="tiny">Seu feed está tranquilo. Novas publicações podem aparecer conforme você conhece pessoas e participa de acontecimentos.</p><button class="small secondary" id="checkFeed">Atualizar feed</button><div id="feedText" class="tiny"></div></div>`;}
+else if(type==='journal'){title='Diário da campanha';body=game.journal.length?game.journal.slice().reverse().map((x,i)=>`<div class="item-row"><span class="tiny">Registro ${game.journal.length-i}</span><div>${esc(x)}</div></div>`).join(''):'<div class="empty">Ainda não há registros.</div>';}
+else if(type==='settings'){title='Opções da campanha';body=`<div class="item-row"><b>Inteligência artificial</b><p class="tiny">Conecte o endereço HTTPS do seu servidor de IA. A chave do provedor fica no servidor, nunca dentro do APK.</p><button id="configureAiFromGame" class="secondary">Configurar IA generativa</button></div><div class="item-row"><b>Salvamento automático</b><p class="tiny">Ativado. O progresso fica guardado neste navegador/aparelho.</p></div><div class="item-row"><b>Privacidade</b><p class="tiny">Quando a IA estiver conectada, o contexto narrativo e a ação digitada serão enviados ao servidor configurado. Use informações fictícias e não envie dados pessoais reais ou sensíveis.</p></div><div class="item-row"><button id="saveNow" class="secondary">Salvar agora</button> <button id="backHome" class="ghost">Voltar ao menu inicial</button></div><div class="item-row"><button id="deleteSave" class="danger">Apagar campanha salva</button></div>`;}
+else{title='Configurações';body='<p>Configurações do jogo.</p>'}
+root.innerHTML=`<div class="modal-back" id="modalBack"><div class="modal"><div class="modal-head"><h2>${title}</h2><button class="small ghost" id="closeModal">✕</button></div><div class="modal-body">${body}</div></div></div>`;root.classList.remove('hidden');$('closeModal').addEventListener('click',closeModal);$('modalBack').addEventListener('click',e=>{if(e.target.id==='modalBack')closeModal()});root.querySelectorAll('[data-activate]').forEach(b=>b.addEventListener('click',()=>{const name=b.dataset.activate;closeModal();usePower(name)}));if($('configureAiFromGame'))$('configureAiFromGame').addEventListener('click',()=>openAISettings());if($('checkFeed'))$('checkFeed').addEventListener('click',()=>{$('feedText').textContent='Nenhuma publicação urgente. Você pode voltar ao feed mais tarde.'});if($('saveNow'))$('saveNow').addEventListener('click',()=>{save();toast('Campanha salva neste aparelho.')});if($('backHome'))$('backHome').addEventListener('click',()=>{save();closeModal();show('home')});if($('deleteSave'))$('deleteSave').addEventListener('click',()=>{if(confirm('Apagar definitivamente a campanha salva neste aparelho?')){localStorage.removeItem('entreMundosSave');localStorage.removeItem('entreMundosSetup');localStorage.removeItem('entreMundosPhase');localStorage.removeItem('entreMundosPending');localStorage.removeItem('entreMundosPowerSelection');game=null;closeModal();show('home');toast('Campanha apagada.')}});}
+function closeModal(){$('modalRoot').classList.add('hidden');$('modalRoot').innerHTML=''}
+document.querySelectorAll('[data-modal]').forEach(b=>b.addEventListener('click',()=>openModal(b.dataset.modal)));
+$('newGame').addEventListener('click',startNew);$('answerNext').addEventListener('click',()=>nextQuestion(false));$('skipQuestion').addEventListener('click',()=>nextQuestion(true));$('beginAdventure').addEventListener('click',begin);$('settingsBtn').addEventListener('click',()=>openHomeSettings());
+function openHomeSettings(){const root=$('modalRoot');root.innerHTML=`<div class="modal-back" id="modalBack"><div class="modal"><div class="modal-head"><h2>Configurações</h2><button class="small ghost" id="closeModal">✕</button></div><div class="modal-body"><p>O progresso é salvo neste aparelho. A narração por IA é opcional e precisa de internet e de um servidor conectado a um provedor de IA.</p><p class="tiny">A chave secreta do provedor não deve ser colocada no HTML ou no APK. Configure somente o endereço HTTPS do seu próprio servidor.</p><button id="configureAiHome" class="primary">Configurar IA generativa</button><div style="height:12px"></div><button id="homeClear" class="danger">Apagar todos os dados salvos</button></div></div></div>`;root.classList.remove('hidden');$('closeModal').onclick=closeModal;$('modalBack').onclick=e=>{if(e.target.id==='modalBack')closeModal()};$('configureAiHome').onclick=()=>openAISettings();$('homeClear').onclick=()=>{if(confirm('Apagar os dados salvos deste jogo?')){['entreMundosSave','entreMundosSetup','entreMundosPhase','entreMundosPending','entreMundosPowerSelection'].forEach(k=>localStorage.removeItem(k));game=null;answers={};closeModal();toast('Dados removidos.')}}}
+
+function openAISettings(){
+  const root=$('modalRoot');
+  const saved=localStorage.getItem(AI_ENDPOINT_KEY)||'';
+  root.innerHTML=`<div class="modal-back" id="modalBack"><div class="modal"><div class="modal-head"><h2>IA generativa</h2><button class="small ghost" id="closeModal">✕</button></div><div class="modal-body"><p>A IA cria conversas naturais, continua a história, interpreta ações livres e descreve individualmente o que os cinco poderes fizeram naquela cena.</p><label class="tiny" for="aiEndpointInput">Endereço HTTPS do servidor</label><input id="aiEndpointInput" class="field" placeholder="https://seu-servidor.exemplo.com" value="${esc(saved)}" maxlength="300"><p class="tiny">Cole apenas o endereço-base do backend, sem /api/rpg-turn. Não coloque API key aqui.</p><div class="form-actions"><button id="saveAiEndpoint" class="primary">Salvar endereço</button><button id="testAiEndpoint" class="secondary">Testar conexão</button></div><p id="aiConfigStatus" class="tiny" aria-live="polite">${saved?'Endereço salvo neste aparelho.':'Nenhum servidor configurado.'}</p><div class="stat-card"><b>Como funciona</b><p class="tiny">O APK conversa com seu backend. O backend guarda a chave secreta e chama a API de IA. Isso evita deixar a chave exposta no aplicativo.</p></div><p class="tiny">Use somente dados fictícios no RPG. A ação, o perfil narrativo e o resumo da campanha serão enviados ao servidor para gerar a cena.</p></div></div></div>`;
+  root.classList.remove('hidden');
+  $('closeModal').onclick=closeModal;
+  $('modalBack').onclick=e=>{if(e.target.id==='modalBack')closeModal()};
+  $('saveAiEndpoint').onclick=()=>{
+    const value=$('aiEndpointInput').value.trim().replace(/\/+$/,'');
+    if(value){
+      try{const u=new URL(value);if(u.protocol!=='https:' && !['localhost','127.0.0.1'].includes(u.hostname)){throw new Error('Use um endereço HTTPS para o APK.')} }catch(err){$('aiConfigStatus').textContent='Endereço inválido. Informe uma URL completa, de preferência HTTPS.';return;}
+      localStorage.setItem(AI_ENDPOINT_KEY,value);$('aiConfigStatus').textContent='Endereço salvo. Toque em “Testar conexão”.';
+    }else{localStorage.removeItem(AI_ENDPOINT_KEY);$('aiConfigStatus').textContent='IA desconectada. O modo narrativo local continuará disponível.';}
+    if(!$('game').classList.contains('hidden'))renderScene();
+    toast(value?'Endereço do servidor salvo.':'Conexão de IA removida.');
+  };
+  $('testAiEndpoint').onclick=async()=>{
+    const value=$('aiEndpointInput').value.trim().replace(/\/+$/,'');
+    if(!value){$('aiConfigStatus').textContent='Digite primeiro o endereço do servidor.';return;}
+    $('testAiEndpoint').disabled=true;$('aiConfigStatus').textContent='Testando servidor…';
+    try{
+      const response=await fetch(value+'/api/health',{method:'GET',headers:{'Accept':'application/json'},cache:'no-store'});
+      const data=await response.json().catch(()=>({}));
+      if(!response.ok||!data.ok)throw new Error(data.error||'O servidor respondeu com erro.');
+      $('aiConfigStatus').textContent=data.aiConfigured?'Conexão funcionando. IA configurada no servidor ('+(data.model||'modelo informado')+').':'Servidor encontrado, mas falta configurar a chave no backend.';
+    }catch(err){$('aiConfigStatus').textContent='Não foi possível conectar: '+(err.message||'verifique o endereço e a internet.');}
+    finally{$('testAiEndpoint').disabled=false;}
+  };
+}
+
+$('continueGame').addEventListener('click',resume);
+function resume(){let raw=localStorage.getItem('entreMundosSave');if(raw){try{game=JSON.parse(raw);ensureSupremePowers();show('game');renderScene();save();toast('Campanha retomada com os cinco poderes absolutos.');return}catch(e){localStorage.removeItem('entreMundosSave')}}let setup=localStorage.getItem('entreMundosSetup');if(setup){try{let s=JSON.parse(setup);answers=s.answers||{};questionIndex=Math.min(s.questionIndex||0,flatQuestions.length-1);renderQuestion();show('interview');toast('Criação do protagonista retomada.');return}catch(e){}}let pending=localStorage.getItem('entreMundosPending');if(pending){try{game=JSON.parse(pending);ensureSupremePowers();renderPowers();show('powerSelect');return}catch(e){}}toast('Nenhuma campanha salva encontrada. Comece um novo jogo.')}
+// O botão Continuar só fica visualmente indisponível quando não existe progresso salvo.
+function refreshContinue(){let has=!!(localStorage.getItem('entreMundosSave')||localStorage.getItem('entreMundosSetup')||localStorage.getItem('entreMundosPending'));$('continueGame').disabled=!has;$('continueGame').style.opacity=has?'1':'.55'}
+const oldSave=save;save=function(){oldSave();if(game&&$('powerSelect')&&!$('powerSelect').classList.contains('hidden'))localStorage.setItem('entreMundosPending',JSON.stringify(game));refreshContinue()};
+// Mantém também as respostas e a etapa da entrevista em cada avanço.
+const originalRenderQuestion=renderQuestion;
+window.addEventListener('load',()=>{flatten();refreshContinue();$('topInfo').textContent=localStorage.getItem(AI_ENDPOINT_KEY)?'✦ IA generativa configurada':'Narrativa local · Configure a IA nas opções';});
+// Persistência imediata ao responder ou pular etapas.
+const oldNext=nextQuestion;nextQuestion=function(skip){oldNext(skip);if(!$('interview').classList.contains('hidden')){localStorage.setItem('entreMundosSetup',JSON.stringify({answers,questionIndex}));refreshContinue()}else{localStorage.removeItem('entreMundosSetup');refreshContinue()}};
+// Salvar a seleção de poderes caso a página seja recarregada.
+const oldFinish=finishInterview;finishInterview=function(){oldFinish();if(game)localStorage.setItem('entreMundosPending',JSON.stringify(game));refreshContinue()};
+// Ajuste da rotina escolar: ao conversar com a professora, a turma segue para o período seguinte.
+const _perform=perform;perform=function(act){if(act==='teacher'){advance(12);addXP(7,'Você conversou com uma professora.');setScene('afternoon','Escola');game.journal.push('A professora respondeu com atenção. As aulas terminaram.');renderScene();save();return}_perform(act)};
+// Auditoria visível: os cinco poderes atuam em sinergia em cada ação do protagonista.
+const performWithPowerAudit=perform;
+perform=function(act){if(game)game.powerEvents=[];performWithPowerAudit(act);if(!game)return;const labels={ready:'O protagonista se prepara para o dia e organiza a própria rotina.',sleep:'O protagonista descansa e recupera o equilíbrio interno.',phone:'O protagonista consulta as mensagens e interpreta informações sociais.',family:'O protagonista conversa com a família e interpreta reações e nuances.',breakfast:'O protagonista toma café e acompanha a rotina da casa.',bag:'O protagonista organiza os materiais e prepara os próximos compromissos.',school:'O protagonista se desloca e se adapta ao ambiente escolar.',caio:'O protagonista conversa com Caio e interpreta a interação.',livia:'O protagonista conversa com Lívia e troca informações.',class:'O protagonista acompanha uma aula e compreende novos conteúdos.',study:'O protagonista estuda e assimila informações.',question:'O protagonista formula uma pergunta e compreende uma explicação.',talk:'O protagonista conversa com um colega.',homework:'O protagonista executa e revisa uma atividade.',interval:'O protagonista acompanha a mudança de ambiente no intervalo.',friends:'O protagonista interage com amigos e ajusta sua comunicação.',buy:'O protagonista faz uma compra e confere os recursos disponíveis.',quiet:'O protagonista procura tranquilidade e regula a concentração.',teacher:'O protagonista conversa com uma professora.',afternoon:'O protagonista acompanha a transição para a tarde.',home:'O protagonista volta para casa e se adapta ao ambiente.',rest:'O protagonista descansa e regula o próprio organismo.',town:'O protagonista explora o bairro e observa um ambiente diferente.',park:'O protagonista passa um tempo na praça e observa o movimento.',shop:'O protagonista observa os produtos e informações da papelaria.',journal:'O protagonista registra e revisita os acontecimentos.',observe:'O protagonista observa o ambiente e identifica padrões.'};applySupremeSynergy(labels[act]||`O protagonista executa a ação “${act}”.`,'',false);renderScene();save();};
+const performFreeWithPowerAudit=performFree;
+performFree=function(text){if(game)game.powerEvents=[];performFreeWithPowerAudit(text);if(!game)return;const direct=detectNamedPower(text);applySupremeSynergy(`Ação livre escrita pelo protagonista: “${String(text).slice(0,120)}”.` ,direct,false);renderScene();save();};
+// -----------------------------------------------------------------------------
+// IA GENERATIVA: o aplicativo chama um backend próprio; nenhuma chave fica no APK.
+// O backend retorna apenas narração, quatro opções e descrições dos cinco poderes.
+// As alterações mecânicas continuam sendo processadas pelo motor local do RPG.
+// -----------------------------------------------------------------------------
+function buildAiContext(actionText,kind){
+  const current=sceneContent();
+  return {
+    kind,
+    action:String(actionText||'').slice(0,700),
+    protagonist:{name:game.profile.name,age:game.profile.age,fictionalProfile:game.profile.answers||{},mood:game.mood,energy:game.energy,level:game.level,xp:game.xp,money:game.money},
+    world:{day:game.day,weekday:days[(game.day-1)%7],time:timeLabel(),location:game.location,scene:game.scene,sceneTitle:current.title,sceneContext:current.text},
+    localEngineOutcome:String(game.lastMessage||'').slice(0,1800),
+    relationships:(game.relationships||[]).map(n=>({name:n.name,role:n.role,mood:n.mood,affinity:n.affinity,trust:n.trust,goal:n.goal,routine:n.routine,memories:(n.memory||[]).slice(-3)})),
+    recentJournal:(game.journal||[]).slice(-7).map(x=>String(x).slice(0,650)),
+    recentAIHistory:(game.aiHistory||[]).slice(-8),
+    powers:(game.powers||powers).map(p=>({name:p.name,level:p.level,evolutionCount:p.evolutionCount,adaptiveRotations:p.adaptiveRotations||0})),
+    localPowerEffects:(game.powerEvents||[]).map(e=>({name:e.name,effect:e.effect,kind:e.kind}))
+  };
+}
+function safeFourChoices(list){
+  const a=Array.isArray(list)?list.map(x=>String(x||'').trim()).filter(Boolean).slice(0,4):[];
+  const defaults=['Continuar a conversa e fazer uma pergunta.','Observar melhor o ambiente antes de agir.','Mudar de assunto e seguir a rotina.','Fazer outra coisa por conta própria.'];
+  while(a.length<4)a.push(defaults[a.length]);
+  return a;
+}
+async function requestGenerativeTurn(actionText,kind='free'){
+  if(!game)return false;
+  const endpoint=(localStorage.getItem(AI_ENDPOINT_KEY)||'').replace(/\/+$/,'');
+  if(!endpoint){if(!aiNoticeShown){toast('Para usar a IA, configure o servidor em Configurações.');aiNoticeShown=true;}return false;}
+  if(aiBusy)return false;
+  aiBusy=true;game.aiTurn=null;renderScene();
+  try{
+    const payload=buildAiContext(actionText,kind);
+    const controller=new AbortController();const timeout=setTimeout(()=>controller.abort(),90000);
+    let response;
+    try{response=await fetch(endpoint+'/api/rpg-turn',{method:'POST',headers:{'Content-Type':'application/json','Accept':'application/json'},body:JSON.stringify({context:payload}),signal:controller.signal});}
+    finally{clearTimeout(timeout);}
+    const data=await response.json().catch(()=>({}));
+    if(!response.ok||!data.ok)throw new Error(data.error||('Erro HTTP '+response.status));
+    const turn=data.turn||{};
+    if(!turn.narrative||!turn.powerEffects)throw new Error('A resposta da IA veio incompleta.');
+    const pfx=turn.powerEffects;
+    const effects=[
+      ['Compreensão Absoluta',pfx.comprehension],
+      ['Otimização Absoluta',pfx.optimization],
+      ['Memória Absoluta',pfx.memory],
+      ['Autorregulação Absoluta',pfx.selfRegulation],
+      ['Adaptação Absoluta',pfx.adaptation]
+    ];
+    game.powerEvents=effects.map(([name,effect])=>({name,effect:String(effect||'Atuação passiva integrada ao contexto, sem manifestação visível adicional.'),kind:'Manifestação contextual narrada pela IA',day:game.day,time:timeLabel()}));
+    game.powerNarrative='✦ REGISTRO NARRATIVO DOS CINCO PODERES\n'+game.powerEvents.map(e=>e.name+': '+e.effect).join('\n');
+    game.aiTurn={title:String(turn.title||sceneContent().title).slice(0,90),speaker:String(turn.speaker||'Narrador').slice(0,50),narrative:String(turn.narrative).slice(0,7000),choices:safeFourChoices(turn.choices)};
+    game.aiHistory=Array.isArray(game.aiHistory)?game.aiHistory:[];
+    game.aiHistory.push({role:'player',content:String(actionText).slice(0,500)},{role:'narrator',content:game.aiTurn.narrative.slice(0,1800)});
+    game.aiHistory=game.aiHistory.slice(-12);
+    game.journal.push('Narração da IA · '+timeLabel()+'\n'+game.aiTurn.narrative.slice(0,2200));
+    save();
+    return true;
+  }catch(err){
+    console.error('Falha na IA narrativa:',err);
+    toast(err.name==='AbortError'?'A IA demorou demais. A narrativa local foi mantida.':'A IA não respondeu. A narrativa local continua disponível.');
+    return false;
+  }finally{
+    aiBusy=false;
+    if(game){renderScene();save();}
+  }
+}
+const performWithLocalEngine=perform;
+perform=function(act){
+  if(!game)return performWithLocalEngine(act);
+  game.aiTurn=null;
+  const sceneBefore=sceneContent();const chosen=sceneBefore.choices?.find(c=>c.act===act)?.label||String(act);
+  performWithLocalEngine(act);
+  if(game)requestGenerativeTurn(chosen,'choice');
+};
+const performFreeWithLocalEngine=performFree;
+performFree=function(text){
+  if(!game)return performFreeWithLocalEngine(text);
+  game.aiTurn=null;
+  performFreeWithLocalEngine(text);
+  if(game)requestGenerativeTurn(text,'free');
+};
+
+const usePowerWithLocalEngine=usePower;
+usePower=function(name){
+  if(!game)return usePowerWithLocalEngine(name);
+  game.aiTurn=null;
+  usePowerWithLocalEngine(name);
+  if(game)requestGenerativeTurn('Ative conscientemente '+name+' e narre o efeito neste momento.','power');
+};
+
+// O relógio do mundo avança lentamente enquanto a campanha está aberta.
+setInterval(()=>{if(game&&!$('game').classList.contains('hidden')){advance(1);if(game.minute%60===0){if(Math.random()<.12){let n=game.relationships[Math.floor(Math.random()*game.relationships.length)];if(n)game.messages.unshift({from:n.name,text:n.name+' mandou uma mensagem enquanto seguia a própria rotina.'});}renderScene();save();}}},30000);
+// Guardar o estado também ao fechar ou atualizar a página.
+window.addEventListener('beforeunload',()=>{if(game)save()});
+// Recuperação de uma campanha pendente de escolha de poderes.
+refreshContinue();flatten();
+})();
+</script></body></html>
